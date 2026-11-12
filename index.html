@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSIR UGC Net Life Sciences Dec 2026 Quiz</title>
+    <title>CSIR UGC Net Life Sciences Dec 2026 Quiz Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font Inter & Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6.4.0 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -16,15 +16,14 @@
             theme: {
                 extend: {
                     colors: {
-                        themeDark: '#022c22',    /* emerald-950 */
-                        themeGreen: '#064e3b',   /* emerald-900 */
-                        themeGreenLight: '#047857', /* emerald-700 */
-                        themeLight: '#ecfdf5',   /* emerald-50 */
-                        themeGold: '#d97706',    /* amber-600 */
-                        themeGoldLight: '#fef3c7', /* amber-100 */
-                        gfBg: '#f4f7f6',
-                        gfCardBg: '#ffffff',
-                        gfBorder: '#d1d5db',
+                        themeDark: '#022c22',       /* Dark Forest */
+                        themeGreen: '#064e3b',      /* Deep Emerald */
+                        themeGreenLight: '#047857', /* Vibrant Emerald */
+                        themeAccent: '#10b981',     /* Light Emerald */
+                        themeBg: '#f2f7f5',         /* Off-white Emerald tint */
+                        themeGold: '#d97706',       /* Amber Gold */
+                        themeGoldLight: '#fef3c7',  /* Light Gold */
+                        cardBg: '#ffffff',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -33,32 +32,31 @@
             }
         }
     </script>
+    
     <style>
         body {
-            background-color: #f4f7f6;
+            background-color: #f2f7f5;
             font-family: 'Inter', sans-serif;
+            color: #1f2937;
         }
+
         .gf-header-strip {
             height: 6px;
-            background: linear-gradient(90deg, #064e3b 0%, #047857 50%, #d97706 100%);
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            background: linear-gradient(90deg, #064e3b 0%, #10b981 50%, #d97706 100%);
         }
+
         .gf-card {
             background: #ffffff;
-            border: 1px solid rgba(4, 120, 87, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(6, 78, 59, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px -2px rgba(2, 44, 34, 0.05);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .gf-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 12px 28px -4px rgba(2, 44, 34, 0.12);
         }
-        .gf-card-selected {
-            border-left: 5px solid #047857;
-            background-color: #ecfdf5;
-        }
-        /* Custom styled radio button */
+
         .radio-custom {
             appearance: none;
             width: 22px;
@@ -66,16 +64,18 @@
             border: 2px solid #9ca3af;
             border-radius: 50%;
             outline: none;
-            transition: 0.2s all linear;
+            transition: all 0.2s ease;
             cursor: pointer;
             position: relative;
             flex-shrink: 0;
             background-color: white;
         }
+
         .radio-custom:checked {
             border: 2px solid #064e3b;
             background-color: #ecfdf5;
         }
+
         .radio-custom:checked::before {
             content: '';
             position: absolute;
@@ -87,125 +87,161 @@
             background-color: #064e3b;
             border-radius: 50%;
         }
-        /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
-        
-        .module-icon-wrapper { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .module-card:hover .module-icon-wrapper { transform: scale(1.15) rotate(-5deg); }
-        
+
+        .module-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .module-card:hover .mod-icon-box {
+            transform: scale(1.1) rotate(-4deg);
+            background-color: #064e3b;
+            color: #ffffff;
+        }
+
         .premium-btn {
             background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
+
         .premium-btn:hover {
             background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+            box-shadow: 0 6px 18px rgba(4, 120, 87, 0.35);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #047857;
+        }
+
+        @media print {
+            header, nav, button, .no-print { display: none !important; }
+            body { background: white; }
+            .gf-card { box-shadow: none; border: 1px solid #ddd; }
         }
     </style>
 </head>
-<body class="text-gray-800 flex flex-col min-h-screen">
+<body class="min-h-screen flex flex-col selection:bg-themeGreenLight selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="bg-themeDark border-b border-themeGreen sticky top-0 z-30 shadow-lg">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <header class="bg-themeDark text-white sticky top-0 z-30 shadow-xl border-b border-emerald-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="navigate('dashboard')">
-                <div class="w-10 h-10 rounded-full bg-themeGreen flex items-center justify-center border-2 border-themeGold">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-themeGreen to-themeGreenLight flex items-center justify-center border border-themeGold/40 shadow-inner">
                     <i class="fa-solid fa-graduation-cap text-themeGold text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-base md:text-lg font-bold text-white leading-tight">CSIR UGC NET Portal</h1>
-                    <p class="text-xs text-themeLight opacity-80">Life Sciences Dec 2026</p>
+                    <h1 class="text-base sm:text-lg font-extrabold tracking-tight leading-none text-white">CSIR UGC NET Portal</h1>
+                    <p class="text-xs text-emerald-300 font-medium mt-0.5">Life Sciences Dec 2026</p>
                 </div>
             </div>
-            
-            <!-- User Nav Info (Hidden on login screen) -->
-            <div id="userNavInfo" class="hidden flex items-center space-x-4">
-                <div id="topProgressBadge" class="hidden sm:flex items-center space-x-2 bg-themeGreen px-3 py-1.5 rounded-full text-themeLight text-xs font-semibold border border-themeGreenLight">
+
+            <!-- User Info Bar -->
+            <div id="userNavInfo" class="hidden flex items-center space-x-3 sm:space-x-4">
+                <div id="topProgressBadge" class="hidden md:flex items-center space-x-2 bg-themeGreen/60 px-3.5 py-1.5 rounded-full text-emerald-100 text-xs font-semibold border border-emerald-700/50">
                     <i class="fa-solid fa-pen-to-square text-themeGold"></i>
                     <span id="answeredCountBadge">0 / 20 Answered</span>
                 </div>
-                <div class="flex items-center space-x-2 bg-themeGreen px-3 py-1.5 rounded-full border border-themeGreenLight cursor-pointer hover:bg-themeGreenLight transition-colors" title="Your Profile">
-                    <i class="fa-solid fa-user-circle text-themeGold"></i>
-                    <span id="navUsername" class="text-sm font-semibold text-white">User</span>
+                
+                <div class="flex items-center space-x-2 bg-emerald-900/80 px-3.5 py-1.5 rounded-full border border-emerald-700/60 text-white">
+                    <div class="w-6 h-6 rounded-full bg-themeGold text-themeDark font-extrabold text-xs flex items-center justify-center" id="userAvatarChar">U</div>
+                    <span id="navUsername" class="text-xs sm:text-sm font-semibold max-w-[120px] sm:max-w-[180px] truncate">User</span>
                 </div>
-                <button onclick="logout()" class="text-themeLight hover:text-themeGold transition-colors" title="Logout">
-                    <i class="fa-solid fa-right-from-bracket text-lg"></i>
+
+                <button onclick="logout()" class="p-2 text-emerald-200 hover:text-themeGold transition-colors rounded-lg hover:bg-emerald-950" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket text-base"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow w-full max-w-6xl mx-auto px-4 py-6 md:py-10">
+    <!-- Main Body Container -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 
         <!-- ================= VIEW: AUTH (LOGIN & REGISTER) ================= -->
-        <div id="viewAuth" class="max-w-md mx-auto mt-6">
+        <div id="viewAuth" class="max-w-md mx-auto my-6 sm:my-10">
             <div class="gf-card overflow-hidden">
                 <div class="gf-header-strip"></div>
-                <div class="p-8">
+                <div class="p-6 sm:p-8">
                     <div class="text-center mb-8">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-themeLight text-themeGreen mb-4 shadow-inner border border-emerald-100">
-                            <i id="authIcon" class="fa-solid fa-user-lock text-2xl"></i>
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-emerald-50 text-themeGreen mb-3 shadow-inner border border-emerald-100">
+                            <i id="authIcon" class="fa-solid fa-user-shield text-2xl"></i>
                         </div>
-                        <h2 id="authTitle" class="text-2xl font-extrabold text-gray-900 tracking-tight">Student Login</h2>
-                        <p id="authSubtitle" class="text-sm text-gray-500 mt-1">Access premium modules and track performance</p>
+                        <h2 id="authTitle" class="text-2xl font-black text-gray-900 tracking-tight">Candidate Login</h2>
+                        <p id="authSubtitle" class="text-xs sm:text-sm text-gray-500 mt-1">Access syllabus modules and save mock test records</p>
                     </div>
-                    
-                    <form id="authForm" onsubmit="handleAuth(event)" class="space-y-5">
-                        <!-- Full Name (Hidden in Login Mode) -->
+
+                    <form id="authForm" onsubmit="handleAuth(event)" class="space-y-4">
+                        <!-- Full Name (Only on Registration) -->
                         <div id="fullNameGroup" class="hidden">
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name</label>
                             <div class="relative">
-                                <i class="fa-solid fa-id-card absolute left-3 top-3.5 text-gray-400 text-sm"></i>
-                                <input type="text" id="authFullName" placeholder="Enter your full name" 
-                                    class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:border-themeGreen focus:ring-1 focus:ring-themeGreen outline-none transition-colors bg-gray-50 focus:bg-white">
+                                <i class="fa-solid fa-id-card absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+                                <input type="text" id="authFullName" placeholder="e.g. Dr. Anagha Ranil" 
+                                    class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-300 rounded-xl focus:border-themeGreen focus:ring-2 focus:ring-themeGreen/20 outline-none transition-all bg-gray-50 focus:bg-white">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Username</label>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Username</label>
                             <div class="relative">
-                                <i class="fa-solid fa-user absolute left-3 top-3.5 text-gray-400 text-sm"></i>
+                                <i class="fa-solid fa-user absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
                                 <input type="text" id="authUsername" required placeholder="Choose a username" 
-                                    class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:border-themeGreen focus:ring-1 focus:ring-themeGreen outline-none transition-colors bg-gray-50 focus:bg-white">
+                                    class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-300 rounded-xl focus:border-themeGreen focus:ring-2 focus:ring-themeGreen/20 outline-none transition-all bg-gray-50 focus:bg-white">
                             </div>
                         </div>
+
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Password</label>
                             <div class="relative">
-                                <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-400 text-sm"></i>
+                                <i class="fa-solid fa-lock absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
                                 <input type="password" id="authPassword" required placeholder="Enter password" 
-                                    class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:border-themeGreen focus:ring-1 focus:ring-themeGreen outline-none transition-colors bg-gray-50 focus:bg-white">
+                                    class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-300 rounded-xl focus:border-themeGreen focus:ring-2 focus:ring-themeGreen/20 outline-none transition-all bg-gray-50 focus:bg-white">
                             </div>
                         </div>
-                        
-                        <!-- Confirm Password (Hidden in Login Mode) -->
+
+                        <!-- Confirm Password (Only on Registration) -->
                         <div id="confirmPasswordGroup" class="hidden">
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Confirm Password</label>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Confirm Password</label>
                             <div class="relative">
-                                <i class="fa-solid fa-shield-check absolute left-3 top-3.5 text-gray-400 text-sm"></i>
+                                <i class="fa-solid fa-shield-check absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
                                 <input type="password" id="authConfirmPassword" placeholder="Re-enter password" 
-                                    class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:border-themeGreen focus:ring-1 focus:ring-themeGreen outline-none transition-colors bg-gray-50 focus:bg-white">
+                                    class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-300 rounded-xl focus:border-themeGreen focus:ring-2 focus:ring-themeGreen/20 outline-none transition-all bg-gray-50 focus:bg-white">
                             </div>
                         </div>
 
-                        <div id="authErrorMsg" class="hidden bg-red-50 border-l-4 border-red-500 p-3 rounded text-red-700 text-xs font-medium">
-                            Invalid credentials. Try again.
+                        <!-- Status Messages -->
+                        <div id="authErrorMsg" class="hidden bg-red-50 border-l-4 border-red-500 p-3 rounded-xl text-red-700 text-xs font-semibold">
+                            Invalid credentials.
                         </div>
-                        <div id="authSuccessMsg" class="hidden bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded text-emerald-700 text-xs font-medium">
-                            Registration successful! You can now log in.
+                        <div id="authSuccessMsg" class="hidden bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded-xl text-emerald-700 text-xs font-semibold">
+                            Registration successful! Logging in...
                         </div>
 
-                        <button type="submit" id="authSubmitBtn" class="w-full premium-btn font-bold py-3 rounded-lg shadow-md transition-colors mt-2 text-sm uppercase tracking-wider">
+                        <button type="submit" id="authSubmitBtn" class="w-full premium-btn font-extrabold py-3 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider mt-2">
                             Login to Portal
                         </button>
                     </form>
 
                     <div class="mt-6 text-center border-t border-gray-100 pt-4">
-                        <p class="text-sm text-gray-600" id="authToggleText">
+                        <p class="text-xs text-gray-600" id="authToggleText">
                             Don't have an account? 
-                            <button onclick="toggleAuthMode()" class="text-themeGreen font-bold hover:underline">Register here</button>
+                            <button onclick="toggleAuthMode()" class="text-themeGreen font-extrabold hover:underline">Register here</button>
                         </p>
                     </div>
                 </div>
@@ -215,50 +251,82 @@
         <!-- ================= VIEW: DASHBOARD ================= -->
         <div id="viewDashboard" class="hidden space-y-8">
             
-            <!-- Welcome & Performance Section -->
+            <!-- Welcome & Personal Performance Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Welcome Banner -->
-                <div class="lg:col-span-2 gf-card p-6 md:p-8 flex flex-col justify-center bg-gradient-to-br from-themeDark via-themeGreen to-themeGreenLight text-white relative overflow-hidden">
-                    <!-- Decorative Pattern -->
-                    <div class="absolute top-0 right-0 -mt-10 -mr-10 opacity-10">
-                        <i class="fa-solid fa-leaf text-9xl"></i>
+                
+                <!-- Hero Banner -->
+                <div class="lg:col-span-2 gf-card p-6 sm:p-8 bg-gradient-to-br from-themeDark via-themeGreen to-themeGreenLight text-white relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute top-0 right-0 -mt-10 -mr-10 opacity-10 pointer-events-none">
+                        <i class="fa-solid fa-dna text-9xl"></i>
                     </div>
-                    
-                    <h2 class="text-2xl md:text-3xl font-extrabold mb-2 relative z-10">Welcome back, <span id="dashWelcomeName" class="text-themeGold">Student</span>!</h2>
-                    <p class="text-themeLight opacity-90 mb-6 relative z-10 max-w-lg">Ready to master the CSIR UGC NET Life Sciences syllabus? Your Dec 2026 preparation starts here.</p>
-                    <div class="flex items-center space-x-4 relative z-10">
-                        <div class="flex items-center text-sm font-medium text-themeDark bg-white px-4 py-2 rounded-full shadow-lg">
-                            <i class="fa-solid fa-book-open text-themeGreen mr-2"></i> 14 Modules
+
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-themeGoldLight mb-4 border border-white/10">
+                            <i class="fa-solid fa-sparkles text-themeGold"></i>
+                            <span>Target: CSIR NET Dec 2026</span>
                         </div>
-                        <div class="flex items-center text-sm font-medium text-themeDark bg-themeGoldLight px-4 py-2 rounded-full shadow-lg">
-                            <i class="fa-solid fa-bullseye text-themeGold mr-2"></i> Target: Dec 2026
+                        <h2 class="text-2xl sm:text-3xl font-black mb-2 tracking-tight">Welcome, <span id="dashWelcomeName" class="text-themeGold">Candidate</span>!</h2>
+                        <p class="text-emerald-100 text-xs sm:text-sm max-w-xl leading-relaxed">
+                            Select any of the 14 CSIR UGC NET Life Sciences syllabus modules below to attempt timed mock assessments, review explanations, and compare scores on the global leaderboard.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-white/10 flex flex-wrap gap-4 relative z-10 text-xs font-bold">
+                        <div class="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-lg">
+                            <i class="fa-solid fa-book-bookmark text-themeGold"></i>
+                            <span>14 Core Modules</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-lg">
+                            <i class="fa-solid fa-clock-rotate-left text-emerald-300"></i>
+                            <span>3 Mins / Question</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-lg">
+                            <i class="fa-solid fa-cloud text-themeGoldLight"></i>
+                            <span>Synced Cloud Records</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Performance Widget -->
-                <div class="gf-card p-6 flex flex-col border-t-4 border-t-themeGold">
-                    <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-3 mb-4 flex items-center justify-between">
-                        <span><i class="fa-solid fa-chart-pie text-themeGold mr-2"></i> My Performance</span>
-                    </h3>
-                    <div id="performanceList" class="flex-grow overflow-y-auto max-h-56 space-y-3 pr-2 custom-scrollbar">
-                        <!-- Populated by JS -->
-                    </div>
-                    <div id="emptyPerformance" class="hidden flex-col items-center justify-center h-full text-gray-400 py-6">
-                        <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-trophy text-gray-300 text-xl"></i>
+                <!-- Personal Scores Widget -->
+                <div class="gf-card p-6 flex flex-col justify-between border-t-4 border-t-themeGold">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+                            <h3 class="text-base font-extrabold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-chart-line text-themeGold mr-2"></i> My Recent Scores
+                            </h3>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-100 px-2 py-0.5 rounded">Synced</span>
                         </div>
-                        <p class="text-sm font-medium text-gray-500">No quizzes attempted yet.</p>
+                        
+                        <div id="performanceList" class="space-y-3 max-h-56 overflow-y-auto pr-1 custom-scrollbar">
+                            <!-- Populated by JS -->
+                        </div>
+                        
+                        <div id="emptyPerformance" class="hidden flex-col items-center justify-center py-8 text-center text-gray-400">
+                            <div class="w-12 h-12 rounded-full bg-emerald-50 text-themeGreen flex items-center justify-center mb-2">
+                                <i class="fa-solid fa-pen-clip text-lg"></i>
+                            </div>
+                            <p class="text-xs font-bold text-gray-600">No test attempts recorded yet.</p>
+                            <p class="text-[11px] text-gray-400 mt-0.5">Start Quiz 1 in Module 5 to track progress.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-gray-100 text-[11px] text-gray-500 font-medium flex items-center justify-between">
+                        <span>Negative marking: -1 for wrong</span>
+                        <span class="font-bold text-themeGreen">+4 for correct</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Modules Grid -->
+            <!-- 14 Syllabus Modules Grid -->
             <div>
-                <h3 class="text-xl font-extrabold text-gray-900 mb-6 flex items-center">
-                    <i class="fa-solid fa-layer-group text-themeGreen mr-3"></i> Course Modules
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="modulesGrid">
+                <div class="flex items-center justify-between mb-5">
+                    <h3 class="text-lg sm:text-xl font-black text-gray-900 tracking-tight flex items-center">
+                        <i class="fa-solid fa-layer-group text-themeGreen mr-2.5"></i> Syllabus Modules
+                    </h3>
+                    <span class="text-xs font-bold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">14 Units</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="modulesGrid">
                     <!-- Populated by JS -->
                 </div>
             </div>
@@ -266,142 +334,140 @@
 
         <!-- ================= VIEW: MODULE DETAILS ================= -->
         <div id="viewModuleDetails" class="hidden space-y-6">
-            <button onclick="navigate('dashboard')" class="text-themeGreen hover:text-themeDark text-sm font-bold flex items-center transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 w-max">
+            <button onclick="navigate('dashboard')" class="text-themeGreen hover:text-themeDark text-xs font-extrabold flex items-center transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 w-max">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Back to Dashboard
             </button>
-            
-            <div class="gf-card p-6 md:p-8 border-t-4 border-t-themeGreen relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-themeLight rounded-full -mr-10 -mt-10 opacity-50"></div>
-                
-                <div class="flex items-center space-x-5 mb-8 relative z-10">
-                    <div id="modDetailIcon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl text-white shadow-lg bg-themeGreen">
+
+            <div class="gf-card p-6 sm:p-8 border-t-4 border-t-themeGreen">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-5 mb-8">
+                    <div id="modDetailIcon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl text-white shadow-md bg-themeGreen flex-shrink-0">
                         <!-- Icon -->
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-themeGold uppercase tracking-widest" id="modDetailNumber">Module X</span>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900" id="modDetailTitle">Module Title</h2>
+                        <span class="text-xs font-black text-themeGold uppercase tracking-widest" id="modDetailNumber">Module X</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight" id="modDetailTitle">Module Title</h2>
                     </div>
                 </div>
-                
-                <h3 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-3 mb-5 flex items-center">
-                    <i class="fa-solid fa-list-check text-themeGreen mr-2"></i> Available Assessments
+
+                <h3 class="text-base font-extrabold text-gray-900 border-b border-gray-200 pb-3 mb-6 flex items-center">
+                    <i class="fa-solid fa-clipboard-check text-themeGreen mr-2"></i> Quizzes & Assessments
                 </h3>
-                
-                <div id="quizListContainer" class="space-y-4">
-                    <!-- Populated by JS -->
+
+                <div id="quizListContainer" class="space-y-6">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
         </div>
 
-        <!-- ================= VIEW: QUIZ ================= -->
+        <!-- ================= VIEW: QUIZ MODE ================= -->
         <div id="viewQuiz" class="hidden space-y-6 max-w-4xl mx-auto">
             
-            <!-- Quiz Info & Marking Scheme -->
-            <div class="gf-card mb-6 overflow-hidden border-t-4 border-t-themeGreen">
-                <div class="p-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 border-b border-gray-100 pb-5 gap-4">
-                        <div>
-                            <h2 id="activeQuizTitle" class="text-2xl font-extrabold text-gray-900 mb-1">Quiz Title</h2>
-                            <p id="activeQuizSubtitle" class="text-sm font-medium text-gray-500">Module details</p>
-                        </div>
-                        <button onclick="requestAbortQuiz()" class="text-xs font-bold text-red-600 hover:bg-red-50 px-4 py-2 rounded-full border border-red-200 transition-colors flex items-center whitespace-nowrap">
-                            <i class="fa-solid fa-times-circle mr-1"></i> Exit Quiz
-                        </button>
+            <!-- Quiz Info Header -->
+            <div class="gf-card p-6 border-t-4 border-t-themeGreen">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 pb-4 mb-4">
+                    <div>
+                        <h2 id="activeQuizTitle" class="text-xl sm:text-2xl font-black text-gray-900">Quiz Title</h2>
+                        <p id="activeQuizSubtitle" class="text-xs font-semibold text-gray-500 mt-0.5">Module details</p>
                     </div>
+                    <button onclick="requestAbortQuiz()" class="text-xs font-bold text-red-600 hover:bg-red-50 px-4 py-2 rounded-full border border-red-200 transition-colors flex items-center">
+                        <i class="fa-solid fa-times-circle mr-1.5"></i> Exit Quiz
+                    </button>
+                </div>
 
-                    <div class="bg-emerald-50 rounded-lg p-4 flex flex-wrap justify-between gap-3 text-xs font-bold text-themeGreen border border-emerald-100 shadow-inner">
-                        <div class="flex items-center space-x-2"><div class="w-2 h-2 rounded-full bg-green-500"></div><span>Correct: <span class="text-green-600 text-sm">+4</span></span></div>
-                        <div class="flex items-center space-x-2"><div class="w-2 h-2 rounded-full bg-red-500"></div><span>Incorrect: <span class="text-red-600 text-sm">-1</span></span></div>
-                        <div class="flex items-center space-x-2"><div class="w-2 h-2 rounded-full bg-gray-400"></div><span>Unattempted: <span class="text-gray-600 text-sm">0</span></span></div>
-                        <div class="flex items-center space-x-2"><i class="fa-solid fa-trophy text-themeGold text-sm"></i><span>Total: <span class="text-themeDark text-sm">80 Marks</span></span></div>
-                    </div>
+                <div class="bg-emerald-50/70 rounded-xl p-3.5 flex flex-wrap justify-between gap-3 text-xs font-bold text-themeGreen border border-emerald-100">
+                    <div class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-check text-green-600"></i><span>Correct: +4</span></div>
+                    <div class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-xmark text-red-600"></i><span>Incorrect: -1</span></div>
+                    <div class="flex items-center space-x-1.5"><i class="fa-solid fa-minus text-gray-500"></i><span>Skipped: 0</span></div>
+                    <div class="flex items-center space-x-1.5"><i class="fa-solid fa-trophy text-themeGold"></i><span>Max Marks: 80</span></div>
                 </div>
             </div>
 
-            <!-- Floating Jump / Quick Navigation -->
-            <div class="bg-white/90 backdrop-blur-md rounded-full border border-gray-200 p-2 shadow-sm sticky top-20 z-20 flex items-center justify-between max-w-4xl mx-auto">
-                <div class="flex items-center space-x-3 pl-4">
-                    <div class="text-xs font-bold text-gray-600 hidden sm:block">
-                        Candidate: <span id="quizCandidateName" class="text-themeGreen">User</span>
+            <!-- Sticky Timer Bar -->
+            <div class="bg-white/95 backdrop-blur-md rounded-full border border-gray-200 p-2 shadow-md sticky top-16 z-20 flex items-center justify-between max-w-4xl mx-auto px-4">
+                <div class="flex items-center space-x-3">
+                    <div class="text-xs font-bold text-gray-700 hidden sm:block">
+                        Candidate: <span id="quizCandidateName" class="text-themeGreen font-extrabold">User</span>
                     </div>
-                    <div class="flex items-center bg-red-50 text-red-600 px-3 py-1.5 rounded-full border border-red-100 shadow-sm text-xs font-bold" title="Time Remaining">
+                    <div class="flex items-center bg-red-50 text-red-600 px-3.5 py-1.5 rounded-full border border-red-200 text-xs font-extrabold shadow-sm">
                         <i class="fa-solid fa-stopwatch mr-1.5 animate-pulse"></i>
                         <span id="quizTimer">00:00</span>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2 pr-1">
-                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full text-gray-600 transition-colors" title="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
-                    <button onclick="confirmSubmission()" class="premium-btn px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">Submit</button>
+                
+                <div class="flex items-center space-x-2">
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full text-gray-600 text-xs transition-colors" title="Scroll to top">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button onclick="confirmSubmission()" class="premium-btn px-5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
+                        Submit
+                    </button>
                 </div>
             </div>
 
-            <!-- Question Cards Dynamic Container -->
+            <!-- Questions Container -->
             <div id="questionsList" class="space-y-6"></div>
 
-            <!-- Bottom Action Bar -->
-            <div class="gf-card p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-themeLight border-emerald-200">
-                <div class="text-sm text-themeGreen font-medium flex items-center">
-                    <i class="fa-solid fa-info-circle mr-2"></i> Finished all questions? Click submit to view your detailed score.
+            <!-- Bottom Action Footer -->
+            <div class="gf-card p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-emerald-50/50 border-emerald-200">
+                <div class="text-xs text-themeGreen font-semibold flex items-center">
+                    <i class="fa-solid fa-circle-info text-base mr-2"></i> Review your answers carefully before submitting.
                 </div>
-                <button onclick="confirmSubmission()" class="w-full sm:w-auto premium-btn px-8 py-3 rounded-full font-bold shadow-lg transition-all text-sm uppercase tracking-wider">
-                    Submit Quiz Now
+                <button onclick="confirmSubmission()" class="w-full sm:w-auto premium-btn px-8 py-3 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg">
+                    Submit Test Now
                 </button>
             </div>
         </div>
 
         <!-- ================= VIEW: RESULTS ================= -->
         <div id="viewResults" class="hidden space-y-6 max-w-4xl mx-auto">
-            <div class="flex justify-between items-center mb-2">
-                <button onclick="navigate('dashboard')" class="text-themeGreen hover:text-themeDark text-sm font-bold flex items-center transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
-                    <i class="fa-solid fa-arrow-left mr-2"></i> Dashboard
+            <div class="flex justify-between items-center no-print">
+                <button onclick="navigate('dashboard')" class="text-themeGreen hover:text-themeDark text-xs font-extrabold flex items-center transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Return to Dashboard
                 </button>
-                <button onclick="window.print()" class="text-gray-600 hover:text-themeDark text-sm font-bold flex items-center transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
-                    <i class="fa-solid fa-print mr-2"></i> Print Result
+                <button onclick="window.print()" class="text-gray-700 hover:text-themeDark text-xs font-extrabold flex items-center transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
+                    <i class="fa-solid fa-print mr-2"></i> Print Scorecard
                 </button>
             </div>
 
-            <!-- Score Card Header -->
+            <!-- Scorecard Banner -->
             <div class="gf-card overflow-hidden border-t-8 border-t-themeGreen relative">
-                <div class="absolute -right-16 -top-16 opacity-5">
-                    <i class="fa-solid fa-award text-9xl"></i>
-                </div>
-                <div class="p-8 md:p-10 relative z-10">
-                    <div class="text-center border-b border-gray-100 pb-8 mb-8">
-                        <span class="inline-block px-4 py-1.5 bg-themeGoldLight text-themeGold rounded-full text-xs font-extrabold uppercase tracking-widest mb-4 shadow-sm">Official Scorecard</span>
-                        <h2 id="resultUserName" class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Candidate Name</h2>
-                        <p id="resultQuizName" class="text-sm font-medium text-gray-500">Quiz Name</p>
+                <div class="p-6 sm:p-10 relative z-10">
+                    <div class="text-center border-b border-gray-100 pb-6 mb-6">
+                        <span class="inline-block px-3.5 py-1 bg-themeGoldLight text-themeGold rounded-full text-[11px] font-black uppercase tracking-widest mb-3">Official Result Breakdown</span>
+                        <h2 id="resultUserName" class="text-2xl sm:text-3xl font-black text-gray-900 mb-1">Candidate Name</h2>
+                        <p id="resultQuizName" class="text-xs sm:text-sm font-semibold text-gray-500">Quiz Name</p>
                     </div>
 
-                    <!-- Marks Grid -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                        <div class="bg-gradient-to-b from-emerald-50 to-white p-5 rounded-2xl border border-emerald-100 shadow-sm">
-                            <p class="text-xs font-bold text-themeGreen uppercase tracking-wide">Total Score</p>
-                            <p id="statScore" class="text-4xl font-black text-themeDark mt-2">0/80</p>
-                            <div class="mt-3 inline-block bg-themeGreen text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm" id="statPercent">0%</div>
+                    <!-- Statistics Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-gradient-to-b from-emerald-50 to-white p-4 rounded-2xl border border-emerald-100 shadow-sm">
+                            <p class="text-[11px] font-extrabold text-themeGreen uppercase tracking-wider">Final Score</p>
+                            <p id="statScore" class="text-3xl font-black text-themeDark mt-1">0/80</p>
+                            <span class="mt-2 inline-block bg-themeGreen text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full" id="statPercent">0%</span>
                         </div>
-                        <div class="bg-gradient-to-b from-green-50 to-white p-5 rounded-2xl border border-green-100 shadow-sm">
-                            <p class="text-xs font-bold text-green-700 uppercase tracking-wide">Correct</p>
-                            <p id="statCorrect" class="text-4xl font-black text-green-600 mt-2">0</p>
-                            <p class="text-xs font-medium text-green-700 mt-2"><i class="fa-solid fa-arrow-up mr-1"></i>+4 pts</p>
+                        <div class="bg-gradient-to-b from-green-50 to-white p-4 rounded-2xl border border-green-100 shadow-sm">
+                            <p class="text-[11px] font-extrabold text-green-700 uppercase tracking-wider">Correct</p>
+                            <p id="statCorrect" class="text-3xl font-black text-green-600 mt-1">0</p>
+                            <p class="text-[11px] font-semibold text-green-700 mt-1">+4 pts each</p>
                         </div>
-                        <div class="bg-gradient-to-b from-red-50 to-white p-5 rounded-2xl border border-red-100 shadow-sm">
-                            <p class="text-xs font-bold text-red-700 uppercase tracking-wide">Incorrect</p>
-                            <p id="statIncorrect" class="text-4xl font-black text-red-600 mt-2">0</p>
-                            <p class="text-xs font-medium text-red-700 mt-2"><i class="fa-solid fa-arrow-down mr-1"></i>-1 pt</p>
+                        <div class="bg-gradient-to-b from-red-50 to-white p-4 rounded-2xl border border-red-100 shadow-sm">
+                            <p class="text-[11px] font-extrabold text-red-700 uppercase tracking-wider">Incorrect</p>
+                            <p id="statIncorrect" class="text-3xl font-black text-red-600 mt-1">0</p>
+                            <p class="text-[11px] font-semibold text-red-700 mt-1">-1 pt each</p>
                         </div>
-                        <div class="bg-gradient-to-b from-gray-50 to-white p-5 rounded-2xl border border-gray-200 shadow-sm">
-                            <p class="text-xs font-bold text-gray-600 uppercase tracking-wide">Skipped</p>
-                            <p id="statUnattempted" class="text-4xl font-black text-gray-500 mt-2">0</p>
-                            <p class="text-xs font-medium text-gray-500 mt-2"><i class="fa-solid fa-minus mr-1"></i>0 pts</p>
+                        <div class="bg-gradient-to-b from-gray-50 to-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+                            <p class="text-[11px] font-extrabold text-gray-600 uppercase tracking-wider">Skipped</p>
+                            <p id="statUnattempted" class="text-3xl font-black text-gray-500 mt-1">0</p>
+                            <p class="text-[11px] font-semibold text-gray-500 mt-1">0 pts</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Detailed Answer Explanations List -->
-            <div class="space-y-5 pt-4">
-                <h3 class="text-2xl font-extrabold text-gray-900 px-2 flex items-center">
-                    <i class="fa-solid fa-microscope text-themeGreen mr-3"></i> Detailed Question Breakdown
+            <!-- Question Review Section -->
+            <div class="space-y-4 pt-4">
+                <h3 class="text-xl font-black text-gray-900 px-1 flex items-center">
+                    <i class="fa-solid fa-list-check text-themeGreen mr-2.5"></i> Detailed Solutions & Concept Explanations
                 </h3>
                 <div id="resultsExplList" class="space-y-6"></div>
             </div>
@@ -409,64 +475,108 @@
 
     </main>
 
-    <!-- Generic Custom Message Modal -->
-    <div id="messageModal" class="fixed inset-0 bg-themeDark bg-opacity-60 z-50 hidden flex items-center justify-center px-4 backdrop-blur-sm transition-opacity">
-        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl transform transition-all text-center">
-            <div id="msgIconContainer" class="w-16 h-16 mx-auto rounded-full bg-red-100 flex items-center justify-center mb-4">
-                <i id="msgIcon" class="fa-solid fa-exclamation-triangle text-2xl text-red-600"></i>
+    <!-- Custom Dialog / Notice Modal -->
+    <div id="messageModal" class="fixed inset-0 bg-themeDark/70 z-50 hidden flex items-center justify-center px-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center">
+            <div id="msgIconContainer" class="w-14 h-14 mx-auto rounded-full bg-red-100 flex items-center justify-center mb-3">
+                <i id="msgIcon" class="fa-solid fa-triangle-exclamation text-xl text-red-600"></i>
             </div>
-            <h3 id="msgTitle" class="text-xl font-bold text-gray-900 mb-2">Notice</h3>
-            <p id="msgText" class="text-sm text-gray-600 mb-6 leading-relaxed">Message goes here.</p>
-            
+            <h3 id="msgTitle" class="text-lg font-extrabold text-gray-900 mb-1">Notice</h3>
+            <p id="msgText" class="text-xs text-gray-600 mb-5 leading-relaxed">Message text...</p>
+
             <div id="msgActionsSingle" class="hidden">
-                <button onclick="closeMessageModal()" class="w-full premium-btn py-2.5 rounded-lg text-sm font-bold shadow">OK</button>
+                <button onclick="closeMessageModal()" class="w-full premium-btn py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider">OK</button>
             </div>
-            <div id="msgActionsConfirm" class="hidden flex justify-center space-x-3">
-                <button onclick="closeMessageModal()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold rounded-lg transition-colors w-1/2">Cancel</button>
-                <button id="msgConfirmBtn" class="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-lg shadow w-1/2 transition-colors">Yes, Exit</button>
+            <div id="msgActionsConfirm" class="hidden flex space-x-3">
+                <button onclick="closeMessageModal()" class="w-1/2 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition-colors">Cancel</button>
+                <button id="msgConfirmBtn" class="w-1/2 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl transition-colors shadow">Yes, Exit</button>
             </div>
         </div>
     </div>
 
-    <!-- Submit Quiz Confirmation Modal -->
-    <div id="submitModal" class="fixed inset-0 bg-themeDark bg-opacity-60 z-50 hidden flex items-center justify-center px-4 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl transform transition-all border-t-4 border-themeGreen">
-            <h3 class="text-xl font-extrabold text-gray-900 mb-2 flex items-center">
-                <i class="fa-solid fa-paper-plane text-themeGreen mr-2"></i> Submit Assessment
+    <!-- Submit Modal -->
+    <div id="submitModal" class="fixed inset-0 bg-themeDark/70 z-50 hidden flex items-center justify-center px-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border-t-4 border-themeGreen">
+            <h3 class="text-lg font-black text-gray-900 mb-1 flex items-center">
+                <i class="fa-solid fa-paper-plane text-themeGreen mr-2"></i> Submit Assessment?
             </h3>
-            <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-                You are about to finalize your answers. This action cannot be undone. Are you ready to see your score?
+            <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                You are about to submit your response. Your marks will be stored permanently in your cloud profile and pushed to the global leaderboard.
             </p>
-            <div class="bg-emerald-50 p-4 rounded-xl mb-6 text-sm text-themeGreen font-medium space-y-2 border border-emerald-100 shadow-inner">
-                <div class="flex justify-between items-center"><span>Questions Answered:</span> <strong id="modalAnswered" class="text-base text-themeDark bg-white px-2 py-0.5 rounded shadow-sm">0</strong></div>
-                <div class="flex justify-between items-center"><span>Questions Skipped:</span> <strong id="modalUnanswered" class="text-base text-themeDark bg-white px-2 py-0.5 rounded shadow-sm">20</strong></div>
+            <div class="bg-emerald-50 p-4 rounded-xl mb-5 text-xs text-themeGreen font-bold space-y-2 border border-emerald-100">
+                <div class="flex justify-between"><span>Answered:</span> <strong id="modalAnswered" class="text-gray-900 bg-white px-2 py-0.5 rounded shadow-sm">0</strong></div>
+                <div class="flex justify-between"><span>Skipped:</span> <strong id="modalUnanswered" class="text-gray-900 bg-white px-2 py-0.5 rounded shadow-sm">20</strong></div>
             </div>
             <div class="flex justify-end space-x-3">
-                <button onclick="closeSubmitModal()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold rounded-lg transition-colors">Review Answers</button>
-                <button onclick="processSubmission()" class="px-6 py-2.5 premium-btn text-white text-sm font-bold rounded-lg shadow-lg">Confirm & Submit</button>
+                <button onclick="closeSubmitModal()" class="px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition-colors">Review Questions</button>
+                <button onclick="processSubmission()" class="px-5 py-2.5 premium-btn text-xs font-extrabold rounded-xl shadow uppercase tracking-wider">Confirm & Submit</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Engine -->
-    <script>
-        // --- DATA DEFINITIONS ---
-        // (Modules and Questions remain functionally the same, integrated into new UI)
+    <!-- Firebase SDK Imports & Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // --- APP & FIREBASE INITIALIZATION ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'csir-ugc-net-2026';
+        
+        // Use environment config or generic fallback
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyDemoConfigForCSIRQuizAppKey",
+            authDomain: "csir-quiz-app.firebaseapp.com",
+            projectId: "csir-quiz-app",
+            storageBucket: "csir-quiz-app.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+
+        let firebaseApp, auth, db;
+        let firebaseAuthReady = false;
+        let firebaseUser = null;
+
+        try {
+            firebaseApp = initializeApp(firebaseConfig);
+            auth = getAuth(firebaseApp);
+            db = getFirestore(firebaseApp);
+
+            // Authenticate first before Firestore operations
+            const initAuth = async () => {
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        const cred = await signInWithCustomToken(auth, __initial_auth_token);
+                        firebaseUser = cred.user;
+                    } else {
+                        const cred = await signInAnonymously(auth);
+                        firebaseUser = cred.user;
+                    }
+                    firebaseAuthReady = true;
+                } catch(e) {
+                    console.warn("Firebase Auth fallback notice:", e);
+                }
+            };
+            initAuth();
+        } catch(e) {
+            console.warn("Firebase setup warning, fallback local mode active.", e);
+        }
+
+        // --- SYLLABUS DATA ---
         const modulesData = [
             { id: 1, name: "Structure and Function of Biomolecules", icon: "fa-atom" },
-            { id: 2, name: "Cellular Organization", icon: "fa-layer-group" },
-            { id: 3, name: "Fundamental Processes", icon: "fa-microscope" },
+            { id: 2, name: "Cellular Organization", icon: "fa-cubes" },
+            { id: 3, name: "Fundamental Processes", icon: "fa-dna" },
             { id: 4, name: "Cell Communication and Cell Signaling", icon: "fa-satellite-dish" },
             { id: 5, name: "Developmental Biology", icon: "fa-seedling" },
             { id: 6, name: "System Physiology – Plant", icon: "fa-leaf" },
             { id: 7, name: "System Physiology – Animal", icon: "fa-paw" },
-            { id: 8, name: "Inheritance Biology", icon: "fa-dna" },
+            { id: 8, name: "Inheritance Biology", icon: "fa-diagram-project" },
             { id: 9, name: "Evolution and Diversity of Life Forms", icon: "fa-tree" },
             { id: 10, name: "Ecology and Behavioural Biology", icon: "fa-globe" },
-            { id: 11, name: "Bioinformatics and Computational Biology", icon: "fa-laptop-medical" },
+            { id: 11, name: "Bioinformatics and Computational Biology", icon: "fa-laptop-code" },
             { id: 12, name: "Biochemical Engineering and Industrial Biotechnology", icon: "fa-industry" },
-            { id: 13, name: "Advances in Biotechnology", icon: "fa-flask" },
+            { id: 13, name: "Advances in Biotechnology", icon: "fa-flask-vial" },
             { id: 14, name: "Methods in Biology", icon: "fa-vials" }
         ];
 
@@ -477,7 +587,7 @@
                     { key: "A", text: "(b) and (c) only" }, { key: "B", text: "(a), (b) and (d)" },
                     { key: "C", text: "(a) and (c) only" }, { key: "D", text: "(c) and (d) only" }
                 ],
-                answer: "C", explanation: "Statements (a) and (c) are true. A cell that is neither specified nor determined is uncommitted and keeps equal potency. Statement (b) is false because specification is early and reversible; determination is irreversible. Statement (d) is false because a determined cell keeps its fate when moved."
+                answer: "C", explanation: "Statements (a) and (c) are true. A cell that is neither specified nor determined is uncommitted and retains equal potency. Specification is early and reversible; determination is irreversible. Once determined, moving a cell to a foreign region does not alter its fate."
             },
             {
                 id: 2, question: "Cells A and B come from the same region of an early embryo and are cultured separately in a neutral medium with no instructive signals. Cell A stays undifferentiated; Cell B forms ectoderm. Which conclusion does this experiment alone justify?",
@@ -487,7 +597,7 @@
                     { key: "C", text: "Cell A is determined, because its state did not change in culture." },
                     { key: "D", text: "Cell B is specified for ectoderm and Cell A is not specified; whether B is determined needs a transplant into a foreign region." }
                 ],
-                answer: "D", explanation: "Cell B differentiated into ectoderm on its own in neutral medium (specified). Cell A did not differentiate (unspecified). Determination requires a transplant test in a non-neutral region."
+                answer: "D", explanation: "Cell B differentiated autonomously in neutral medium, proving it is specified for ectoderm. Cell A failed to differentiate in neutral medium, showing it was not specified. Determination can only be tested by grafting Cell B into a non-neutral foreign environment."
             },
             {
                 id: 3, question: "Presumptive epidermal ectoderm is grafted into the presumptive neural plate of a newt host of the same stage. Grafts from early gastrulae form neural tissue; grafts from late gastrulae form a patch of epidermis within the host nervous system. How is the ectoderm best classified?",
@@ -497,7 +607,7 @@
                     { key: "C", text: "Autonomously specified at both stages." },
                     { key: "D", text: "Not specified at the late gastrula, specified at the early gastrula." }
                 ],
-                answer: "A", explanation: "Early-gastrula epidermal ectoderm moved into neural plate follows its new site (labile/conditionally specified). Late-gastrula ectoderm keeps its epidermal fate (determined)."
+                answer: "A", explanation: "At the early gastrula stage, the graft changes fate according to its new host environment (conditionally specified/labile). By the late gastrula stage, the tissue retains its original epidermal fate despite neural inductive signals, demonstrating determination."
             },
             {
                 id: 4, question: "A cell isolated from an early embryo forms ectoderm in a neutral dish. The same type of cell placed among mesoderm-region cells, or in medium carrying a myogenic (MyoD-type) cue, forms muscle. What does this show?",
@@ -507,7 +617,7 @@
                     { key: "C", text: "The cell was specified, not determined, for ectoderm; specification is reversible." },
                     { key: "D", text: "The cell was specified for muscle in the neutral dish." }
                 ],
-                answer: "C", explanation: "Formed ectoderm in neutral dish (specified for ectoderm). Formed muscle in another environment, showing specification is reversible and cell was not yet determined."
+                answer: "C", explanation: "Differentiating into ectoderm in neutral dish defines specification. Altering its fate to muscle when exposed to mesodermal cues proves specification is reversible and the cell was not yet determined."
             },
             {
                 id: 5, question: "Which experimental design can distinguish a cell that is only specified from a cell that is determined?",
@@ -517,7 +627,7 @@
                     { key: "C", text: "Transplant the cell back into its original position and score its fate." },
                     { key: "D", text: "Destroy the neighbouring cells and see whether the embryo develops as a half." }
                 ],
-                answer: "B", explanation: "Neutral medium tests specification. Determination requires transplanting to a foreign non-neutral region to see if original fate persists."
+                answer: "B", explanation: "Neutral culture tests specification (ability to differentiate autonomously). Transplanting into a foreign non-neutral environment tests determination (resistance to foreign inductive signals)."
             },
             {
                 id: 6, question: "In a mosaic embryo, prospective potency equals prospective fate. What is expected when an early blastomere is moved to a different position?",
@@ -527,7 +637,7 @@
                     { key: "C", text: "It reverts to a totipotent state and forms a whole embryo." },
                     { key: "D", text: "It still develops according to its original prospective fate." }
                 ],
-                answer: "D", explanation: "In mosaic embryos, determinants are localized intracellularly. Fate is set early (autonomous specification) so moved blastomeres follow original prospective fate."
+                answer: "D", explanation: "Mosaic development is driven by autonomous specification. Blastomeres inherit specific cytoplasmic determinants early and develop according to their original prospective fate even when relocated."
             },
             {
                 id: 7, question: "All of the following are features of autonomous specification EXCEPT:",
@@ -537,7 +647,7 @@
                     { key: "C", text: "Specification and determination occur early, by about the 8-cell stage, with little or no gap between them." },
                     { key: "D", text: "Removing a blastomere leaves the adult lacking the structures that cell would have formed." }
                 ],
-                answer: "A", explanation: "Inductive signals define conditional specification, making it the correct EXCEPT answer for autonomous specification."
+                answer: "A", explanation: "Inductive signals from neighbouring cells govern conditional specification. Autonomous specification relies on internally inherited cytoplasmic determinants, making A the correct EXCEPT answer."
             },
             {
                 id: 8, question: "Match each group with its dominant mode of specification.\nGroups: P. tunicates and annelids; Q. birds and mammals; R. insects such as Drosophila.\nModes: 1. syncytial; 2. conditional; 3. autonomous.",
@@ -545,7 +655,7 @@
                     { key: "A", text: "P-2, Q-3, R-1" }, { key: "B", text: "P-3, Q-2, R-1" },
                     { key: "C", text: "P-3, Q-1, R-2" }, { key: "D", text: "P-1, Q-2, R-3" }
                 ],
-                answer: "B", explanation: "Tunicates/annelids are autonomous (3), birds/mammals are conditional (2), insects (Drosophila) are syncytial (1)."
+                answer: "B", explanation: "Tunicates/annelids exhibit predominant autonomous specification (3); birds/mammals rely on conditional specification (2); insects/Drosophila undergo syncytial specification (1)."
             },
             {
                 id: 9, question: "Removing the blastomere that normally forms muscle from an 8-cell embryo gives a larva without muscle in species X, but a normal larva in species Y. Which inference about species Y is most reasonable?",
@@ -555,7 +665,7 @@
                     { key: "C", text: "Y relies mainly on conditional specification, so neighbouring cells can compensate for the missing blastomere." },
                     { key: "D", text: "All Y blastomeres are already determined at the 8-cell stage." }
                 ],
-                answer: "C", explanation: "Normal development after blastomere removal shows compensation via conditional specification."
+                answer: "C", explanation: "Species Y exhibits regulative development (conditional specification), where surviving blastomeres alter their fates to compensate for missing parts and produce a complete embryo."
             },
             {
                 id: 10, question: "Blastomeres of an 8-cell tunicate embryo are separated and cultured. Most blastomeres follow their normal fates, but neural ectoderm does not form from the separated animal blastomeres. What does this indicate?",
@@ -565,7 +675,7 @@
                     { key: "C", text: "The tunicate embryo is entirely conditionally specified." },
                     { key: "D", text: "Neural ectoderm is conditionally specified: it needs cell-cell interaction, although the embryo is largely mosaic." }
                 ],
-                answer: "D", explanation: "Isolated animal blastomeres fail to form neural ectoderm without vegetal signals, indicating conditional induction despite overall mosaic development."
+                answer: "D", explanation: "While tunicates are predominantly mosaic (autonomous), neural ectoderm requires an inductive signal from underlying vegetal cells (FGF pathway), proving that neural fate is conditionally specified."
             },
             {
                 id: 11, question: "Roux killed one blastomere of a frog 2-cell embryo with a hot needle but left it in place; the survivor formed a half embryo. Why is this not, by itself, conclusive proof of autonomous specification?",
@@ -575,27 +685,27 @@
                     { key: "C", text: "Frog blastomeres contain no cytoplasmic determinants." },
                     { key: "D", text: "The hot needle destroys the genome of the surviving blastomere." }
                 ],
-                answer: "B", explanation: "Roux's hot needle left dead tissue attached which physically/chemically obstructed regulation, unlike Driesch's isolation experiment."
+                answer: "B", explanation: "Leaving the dead blastomere attached provided mechanical/chemical cues preventing the surviving blastomere from reorganizing. When blastomeres are completely separated (as Driesch did), regulation occurs."
             },
             {
-                id: 12, question: "Antisense oligonucleotides against macho transcript reduce muscle differentiation in tunicate embryos, while injecting macho mRNA into other blastomeres expands muscle differentiation. Together these results show that macho is:",
+                id: 12, question: "Antisense oligonucleotides against macho-1 transcript reduce muscle differentiation in tunicate embryos, while injecting macho-1 mRNA into other blastomeres expands muscle differentiation. Together these results show that macho-1 is:",
                 options: [
                     { key: "A", text: "Both required for and sufficient to promote muscle differentiation, as expected of a localized muscle determinant." },
                     { key: "B", text: "Necessary but not sufficient for muscle fate." },
                     { key: "C", text: "Sufficient but not necessary for muscle fate." },
                     { key: "D", text: "A secreted inductive signal sent from vegetal to animal blastomeres." }
                 ],
-                answer: "A", explanation: "Knockdown reduces muscle (necessary) and overexpression expands muscle (sufficient)."
+                answer: "A", explanation: "Loss of function (antisense) causing loss of muscle shows necessity; gain of function (ectopic injection) inducing muscle shows sufficiency. Macho-1 is both necessary and sufficient."
             },
             {
-                id: 13, question: "When macho mRNA was injected into blastomeres that normally do not make muscle, those cells made muscle. What does this imply about them at the time of injection?",
+                id: 13, question: "When macho-1 mRNA was injected into blastomeres that normally do not make muscle, those cells made muscle. What does this imply about them at the time of injection?",
                 options: [
                     { key: "A", text: "They were determined for a non-muscle fate." },
                     { key: "B", text: "They were already specified for muscle." },
                     { key: "C", text: "They had not been irreversibly determined for a non-muscle fate and could still respond to a muscle determinant." },
                     { key: "D", text: "They were totipotent." }
                 ],
-                answer: "C", explanation: "Non-muscle blastomeres responding to ectopic macho-1 demonstrates developmental lability (lack of prior determination)."
+                answer: "C", explanation: "The ability of non-muscle blastomeres to respond to ectopic Macho-1 transcription factor proves they had not yet undergone irreversible determination to non-muscle fates."
             },
             {
                 id: 14, question: "Trochoblasts of the snail Patella form the ciliated cells of the prototroch band. If trochoblast precursors isolated from the embryo still form cilia at the normal time, which mode of specification does this support?",
@@ -605,7 +715,7 @@
                     { key: "C", text: "Induction by a morphogen gradient from an organiser." },
                     { key: "D", text: "Autonomous specification by determinants inherited from the egg cytoplasm." }
                 ],
-                answer: "D", explanation: "Isolated Patella trochoblasts self-differentiating into ciliated prototroch cells is classic autonomous specification."
+                answer: "D", explanation: "Isolated blastomeres differentiating autonomously in isolation without cell contact is the classic hallmark of autonomous specification by maternal cytoplasmic determinants."
             },
             {
                 id: 15, question: "Which statement best defines a cytoplasmic (morphogenetic) determinant?",
@@ -615,17 +725,17 @@
                     { key: "C", text: "A stretch of genomic DNA that is lost from cells of particular lineages." },
                     { key: "D", text: "A zygotic transcription factor first expressed after gastrulation." }
                 ],
-                answer: "A", explanation: "Morphogenetic determinants are maternal factors (mRNAs/proteins) localized in cytoplasm."
+                answer: "A", explanation: "Cytoplasmic determinants are maternal mRNAs or proteins stored heterogeneous in egg cytoplasm, partitioned unequally during cleavage to dictate cell fate."
             },
             {
-                id: 16, question: "In the lecture schematic of mosaic development, the zygote cytosol holds A (ectoderm), B (mesoderm) and C (endoderm) determinants. Which cleavage first sorts them into separate blastomeres, giving A, B and C tiers?",
+                id: 16, question: "In embryonic development, equatorial (horizontal) cleavage separates the animal and vegetal cytoplasm. In autonomous cleavage, what is the primary consequence of this division?",
                 options: [
                     { key: "A", text: "The first vertical cleavage (2-cell stage)." },
-                    { key: "B", text: "The equatorial (horizontal) cleavage that forms the 8-cell stage." },
-                    { key: "C", text: "The second vertical cleavage (4-cell stage)." },
-                    { key: "D", text: "Gastrulation movements." }
+                    { key: "B", text: "It partitions distinct cytoplasmic determinant tiers into separate blastomere layers." },
+                    { key: "C", text: "It forces cells to undergo syncytial nuclear division." },
+                    { key: "D", text: "It triggers immediate blastopore formation." }
                 ],
-                answer: "B", explanation: "Horizontal/equatorial cleavage partitions upper/middle/lower determinant tiers across blastomeres."
+                answer: "B", explanation: "Equatorial cleavage cuts across cytoplasm layers, isolating animal-tier determinants (ectodermal) from vegetal-tier determinants (endodermal/mesodermal)."
             },
             {
                 id: 17, question: "Which statements are correct?\n(a) A determined cell can also differentiate autonomously in a neutral medium.\n(b) A specified cell moved to a different embryonic region is certain to keep its original fate.\n(c) In autonomous specification there is little or no gap between specification and determination.\n(d) In conditional specification a cell's fate depends on its position and on signals from neighbours.",
@@ -633,7 +743,7 @@
                     { key: "A", text: "(a) and (b) only" }, { key: "B", text: "(b), (c) and (d) only" },
                     { key: "C", text: "(a), (b), (c) and (d)" }, { key: "D", text: "(a), (c) and (d) only" }
                 ],
-                answer: "D", explanation: "Statement (b) is false because specified cells can change fate in foreign environments; (a), (c), and (d) are true."
+                answer: "D", explanation: "Statement (b) is false because a specified cell is labile and changes fate when moved to a new region. Statements (a), (c), and (d) are all correct."
             },
             {
                 id: 18, question: "Which statement correctly describes syncytial specification?",
@@ -643,7 +753,7 @@
                     { key: "C", text: "Gradients of cytoplasmic determinants act on nuclei that share one cytoplasm, specifying fates before cell boundaries form." },
                     { key: "D", text: "Fates are irreversibly fixed at the one-cell stage." }
                 ],
-                answer: "C", explanation: "Syncytial specification relies on morphogen gradients acting on shared syncytial nuclei before cellularization."
+                answer: "C", explanation: "Syncytial specification occurs in early insect embryos where multiple nuclei share a common cytoplasm (syncytium) and morphogen gradients (Bicoid/Nanos) specify position before cellularization."
             },
             {
                 id: 19, question: "Assertion (A): In autonomous specification, a blastomere moved to a new position still follows its original fate.\nReason (R): The cytoplasmic determinants travel with the blastomere and specify its fate irrespective of its neighbours.\nWhich is correct?",
@@ -653,7 +763,7 @@
                     { key: "C", text: "A is true but R is false." },
                     { key: "D", text: "A is false but R is true." }
                 ],
-                answer: "B", explanation: "Autonomous blastomeres keep fate because inherited determinants move with them and direct differentiation independently."
+                answer: "B", explanation: "Blastomeres in autonomous specification retain their commitment because inherited determinants move inside the cell and operate independently of cell interactions."
             },
             {
                 id: 20, question: "Three early blastomeres were tested in two environments.\nX: neutral medium gives muscle; transplanted into the neural-plate region gives muscle.\nY: neutral medium gives epidermis; transplanted into the neural-plate region gives neural tissue.\nZ: neutral medium leaves it undifferentiated; transplanted into the neural-plate region gives neural tissue.\nWhich classification is correct?",
@@ -663,33 +773,32 @@
                     { key: "C", text: "X determined; Y determined; Z specified." },
                     { key: "D", text: "X specified only; Y specified only; Z determined." }
                 ],
-                answer: "A", explanation: "X maintains fate in both media (determined); Y changes fate upon transplant (specified only); Z needs external signals to differentiate (not specified)."
+                answer: "A", explanation: "X maintains its fate in both neutral and foreign sites (determined). Y forms epidermis in neutral site but changes to neural in foreign site (specified only). Z fails to differentiate in neutral site but responds to neural site signals (uncommitted/not specified)."
             }
         ];
 
-        // --- GLOBAL STATE ---
-        let currentUser = null;
-        let currentProfileName = null;
+        // --- GLOBAL APP STATE ---
+        let currentUser = null;          // Username key
+        let currentProfileName = null;   // Display full name
         let currentModuleId = null;
         let activeQuizData = null;
         let activeQuizInfo = null;
         let userAnswers = {};
         
-        let isLoginMode = true; // Auth Toggle State
-        let timerInterval = null; // Timer State
+        let isLoginMode = true;
+        let timerInterval = null;
         let timeRemaining = 0;
 
-        // --- NAVIGATION & INIT ---
-
-        function showView(viewId) {
+        // --- NAVIGATION ENGINE ---
+        window.showView = function(viewId) {
             ['viewAuth', 'viewDashboard', 'viewModuleDetails', 'viewQuiz', 'viewResults'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
             document.getElementById(viewId).classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        };
 
-        function navigate(page) {
+        window.navigate = function(page) {
             if (page === 'auth') {
                 document.getElementById('userNavInfo').classList.add('hidden');
                 document.getElementById('authForm').reset();
@@ -702,11 +811,10 @@
                 renderDashboard();
                 showView('viewDashboard');
             }
-        }
+        };
 
-        // --- AUTHENTICATION & REGISTRATION ---
-
-        function toggleAuthMode() {
+        // --- AUTHENTICATION LOGIC ---
+        window.toggleAuthMode = function() {
             isLoginMode = !isLoginMode;
             hideAuthMessages();
             document.getElementById('authForm').reset();
@@ -720,70 +828,99 @@
             const authIcon = document.getElementById('authIcon');
 
             if (isLoginMode) {
-                title.innerText = "Student Login";
-                subtitle.innerText = "Access premium modules and track performance";
+                title.innerText = "Candidate Login";
+                subtitle.innerText = "Access syllabus modules and save mock test records";
                 submitBtn.innerText = "Login to Portal";
-                toggleText.innerHTML = `Don't have an account? <button type="button" onclick="toggleAuthMode()" class="text-themeGreen font-bold hover:underline focus:outline-none">Register here</button>`;
+                toggleText.innerHTML = `Don't have an account? <button type="button" onclick="toggleAuthMode()" class="text-themeGreen font-extrabold hover:underline focus:outline-none">Register here</button>`;
                 confirmGroup.classList.add('hidden');
                 fullNameGroup.classList.add('hidden');
                 document.getElementById('authConfirmPassword').removeAttribute('required');
                 document.getElementById('authFullName').removeAttribute('required');
-                authIcon.className = "fa-solid fa-user-lock text-2xl";
+                authIcon.className = "fa-solid fa-user-shield text-2xl";
             } else {
-                title.innerText = "Create Account";
-                subtitle.innerText = "Join to save your progress and take quizzes";
-                submitBtn.innerText = "Register Now";
-                toggleText.innerHTML = `Already registered? <button type="button" onclick="toggleAuthMode()" class="text-themeGreen font-bold hover:underline focus:outline-none">Log in here</button>`;
+                title.innerText = "Register Account";
+                subtitle.innerText = "Create your profile to save progress across all devices";
+                submitBtn.innerText = "Register & Login";
+                toggleText.innerHTML = `Already registered? <button type="button" onclick="toggleAuthMode()" class="text-themeGreen font-extrabold hover:underline focus:outline-none">Log in here</button>`;
                 confirmGroup.classList.remove('hidden');
                 fullNameGroup.classList.remove('hidden');
                 document.getElementById('authConfirmPassword').setAttribute('required', 'true');
                 document.getElementById('authFullName').setAttribute('required', 'true');
                 authIcon.className = "fa-solid fa-user-plus text-2xl";
             }
-        }
+        };
 
         function hideAuthMessages() {
             document.getElementById('authErrorMsg').classList.add('hidden');
             document.getElementById('authSuccessMsg').classList.add('hidden');
         }
 
-        function getAuthDB() {
-            const db = localStorage.getItem('csir_users_db');
-            return db ? JSON.parse(db) : {};
+        // --- CLOUD / LOCAL DATA STORAGE HELPERS ---
+        async function fetchUserAccount(username) {
+            const cleanUser = username.trim().toLowerCase();
+            if (firebaseAuthReady && db) {
+                try {
+                    const userDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'userAccounts', cleanUser);
+                    const snap = await getDoc(userDocRef);
+                    if (snap.exists()) {
+                        return snap.data();
+                    }
+                } catch(e) {
+                    console.warn("Firestore user fetch fallback:", e);
+                }
+            }
+            // Fallback LocalStorage check
+            const dbLocal = localStorage.getItem('csir_users_db');
+            const parsed = dbLocal ? JSON.parse(dbLocal) : {};
+            return parsed[cleanUser] || null;
         }
 
-        function saveAuthDB(db) {
-            localStorage.setItem('csir_users_db', JSON.stringify(db));
+        async function saveUserAccount(username, fullName, password) {
+            const cleanUser = username.trim().toLowerCase();
+            const accountData = {
+                username: cleanUser,
+                fullName: fullName.trim(),
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+
+            // Save to Firestore if connected
+            if (firebaseAuthReady && db) {
+                try {
+                    const userDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'userAccounts', cleanUser);
+                    await setDoc(userDocRef, accountData);
+                } catch(e) {
+                    console.warn("Firestore save user fallback:", e);
+                }
+            }
+
+            // Always back up locally
+            const dbLocal = localStorage.getItem('csir_users_db');
+            const parsed = dbLocal ? JSON.parse(dbLocal) : {};
+            parsed[cleanUser] = accountData;
+            localStorage.setItem('csir_users_db', JSON.stringify(parsed));
         }
 
-        function handleAuth(event) {
+        window.handleAuth = async function(event) {
             event.preventDefault();
             hideAuthMessages();
-            
-            const username = document.getElementById('authUsername').value.trim();
-            const password = document.getElementById('authPassword').value;
-            const usersDB = getAuthDB();
-            
-            if (isLoginMode) {
-                // Login Flow
-                let userData = usersDB[username];
-                
-                // Handle legacy user accounts without full name
-                if (typeof userData === 'string') {
-                    userData = { password: userData, fullName: username };
-                }
 
-                if (userData && userData.password === password) {
-                    processLoginSuccess(username, userData.fullName);
+            const rawUsername = document.getElementById('authUsername').value.trim();
+            const cleanUsername = rawUsername.toLowerCase();
+            const password = document.getElementById('authPassword').value;
+
+            if (isLoginMode) {
+                const userObj = await fetchUserAccount(cleanUsername);
+                if (userObj && userObj.password === password) {
+                    processLoginSuccess(cleanUsername, userObj.fullName || rawUsername);
                 } else {
                     const errorBox = document.getElementById('authErrorMsg');
-                    errorBox.innerText = !userData ? "Username not found. Please register." : "Incorrect password. Try again.";
+                    errorBox.innerText = !userObj ? "Username not found. Please register." : "Incorrect password. Please try again.";
                     errorBox.classList.remove('hidden');
                 }
             } else {
-                // Register Flow
-                const confirmPassword = document.getElementById('authConfirmPassword').value;
                 const fullName = document.getElementById('authFullName').value.trim();
+                const confirmPassword = document.getElementById('authConfirmPassword').value;
 
                 if (password !== confirmPassword) {
                     const errorBox = document.getElementById('authErrorMsg');
@@ -791,263 +928,236 @@
                     errorBox.classList.remove('hidden');
                     return;
                 }
-                if (usersDB[username]) {
+
+                const existing = await fetchUserAccount(cleanUsername);
+                if (existing) {
                     const errorBox = document.getElementById('authErrorMsg');
-                    errorBox.innerText = "Username already exists. Please log in or choose another.";
+                    errorBox.innerText = "Username is taken. Please choose another username or log in.";
                     errorBox.classList.remove('hidden');
                     return;
                 }
-                
-                // Save New User with Full Name
-                usersDB[username] = { password: password, fullName: fullName };
-                saveAuthDB(usersDB);
-                
-                // Auto-login after register
-                processLoginSuccess(username, fullName);
+
+                await saveUserAccount(cleanUsername, fullName, password);
+                processLoginSuccess(cleanUsername, fullName);
             }
-        }
+        };
 
         function processLoginSuccess(username, fullName) {
             currentUser = username;
             currentProfileName = fullName || username;
-            
-            // Remember the user session so they don't get logged out on refresh
+
             localStorage.setItem('csir_active_user', username);
-            
-            document.getElementById('navUsername').innerText = currentProfileName.split(' ')[0]; // Show first name in nav
+            localStorage.setItem('csir_active_fullname', currentProfileName);
+
+            document.getElementById('navUsername').innerText = currentProfileName;
+            document.getElementById('userAvatarChar').innerText = currentProfileName.charAt(0).toUpperCase();
             document.getElementById('dashWelcomeName').innerText = currentProfileName;
+
             navigate('dashboard');
         }
 
-        function logout() {
+        window.logout = function() {
             currentUser = null;
             currentProfileName = null;
-            localStorage.removeItem('csir_active_user'); // Clear session
+            localStorage.removeItem('csir_active_user');
+            localStorage.removeItem('csir_active_fullname');
             navigate('auth');
-        }
+        };
 
-        // --- CUSTOM MODALS ---
-
-        function showCustomMessage(title, text, type = 'info', onConfirm = null) {
-            document.getElementById('msgTitle').innerText = title;
-            document.getElementById('msgText').innerText = text;
-            
-            const iconContainer = document.getElementById('msgIconContainer');
-            const icon = document.getElementById('msgIcon');
-            
-            if (type === 'danger') {
-                iconContainer.className = "w-16 h-16 mx-auto rounded-full bg-red-100 flex items-center justify-center mb-4";
-                icon.className = "fa-solid fa-exclamation-triangle text-2xl text-red-600";
-            } else {
-                iconContainer.className = "w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-4";
-                icon.className = "fa-solid fa-info-circle text-2xl text-themeGreen";
-            }
-
-            if (onConfirm) {
-                document.getElementById('msgActionsSingle').classList.add('hidden');
-                document.getElementById('msgActionsConfirm').classList.remove('hidden');
-                document.getElementById('msgConfirmBtn').onclick = () => {
-                    closeMessageModal();
-                    onConfirm();
-                };
-            } else {
-                document.getElementById('msgActionsSingle').classList.remove('hidden');
-                document.getElementById('msgActionsConfirm').classList.add('hidden');
-            }
-
-            document.getElementById('messageModal').classList.remove('hidden');
-        }
-
-        function closeMessageModal() {
-            document.getElementById('messageModal').classList.add('hidden');
-        }
-
-        // --- DASHBOARD LOGIC ---
-
-        function renderDashboard() {
-            // Render Modules Grid
+        // --- DASHBOARD RENDERER ---
+        async function renderDashboard() {
+            // Render 14 Modules
             const grid = document.getElementById('modulesGrid');
             grid.innerHTML = '';
-            
+
             modulesData.forEach(mod => {
                 const card = document.createElement('div');
-                card.className = `module-card gf-card p-5 cursor-pointer flex flex-col items-center text-center bg-white group hover:bg-themeLight`;
+                card.className = `module-card gf-card p-5 cursor-pointer flex flex-col items-center text-center bg-white group hover:border-themeGreen transition-all`;
                 card.onclick = () => openModule(mod.id);
-                
+
                 card.innerHTML = `
-                    <div class="module-icon-wrapper w-14 h-14 rounded-full bg-themeLight text-themeGreen group-hover:bg-themeGreen group-hover:text-white flex items-center justify-center text-2xl mb-3 border border-emerald-100 shadow-sm transition-colors">
+                    <div class="mod-icon-box w-12 h-12 rounded-2xl bg-emerald-50 text-themeGreen flex items-center justify-center text-xl mb-3 border border-emerald-100 shadow-sm transition-all">
                         <i class="fa-solid ${mod.icon}"></i>
                     </div>
-                    <span class="text-xs font-bold text-themeGold mb-1 tracking-wider uppercase">Module ${mod.id}</span>
-                    <h4 class="text-sm font-bold text-gray-800 leading-snug group-hover:text-themeDark transition-colors">${mod.name}</h4>
+                    <span class="text-[10px] font-black text-themeGold uppercase tracking-widest mb-1">Module ${mod.id}</span>
+                    <h4 class="text-xs sm:text-sm font-bold text-gray-800 leading-snug group-hover:text-themeDark transition-colors">${mod.name}</h4>
                 `;
                 grid.appendChild(card);
             });
 
-            // Render Performance History
-            const history = getScoresFromStorage();
+            // Fetch Personal Scores
+            const history = await getUserScoreHistory(currentUser);
             const perfList = document.getElementById('performanceList');
             const emptyPerf = document.getElementById('emptyPerformance');
-            
+
             perfList.innerHTML = '';
-            if (history.length === 0) {
+            if (!history || history.length === 0) {
                 perfList.classList.add('hidden');
                 emptyPerf.classList.remove('hidden');
                 emptyPerf.classList.add('flex');
             } else {
                 perfList.classList.remove('hidden');
                 emptyPerf.classList.add('hidden');
-                
-                // Show latest first
-                history.reverse().forEach(record => {
-                    const pct = Math.max(0, (record.score / record.total) * 100).toFixed(0);
-                    let colorClass = 'text-green-700 bg-green-100 border-green-200';
-                    if(pct < 40) colorClass = 'text-red-700 bg-red-100 border-red-200';
-                    else if (pct < 70) colorClass = 'text-themeGold bg-themeGoldLight border-yellow-300';
+
+                // Sort latest first
+                const sorted = [...history].reverse();
+                sorted.forEach(rec => {
+                    const pct = Math.max(0, (rec.score / rec.total) * 100).toFixed(0);
+                    let badgeClass = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                    if (pct < 40) badgeClass = 'bg-red-100 text-red-800 border-red-200';
+                    else if (pct < 70) badgeClass = 'bg-amber-100 text-amber-800 border-amber-200';
 
                     const item = document.createElement('div');
-                    item.className = `flex justify-between items-center p-3 rounded-xl border border-gray-100 bg-gray-50 hover:bg-white shadow-sm transition-colors`;
+                    item.className = 'flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-gray-50/70 hover:bg-white shadow-sm transition-all';
                     item.innerHTML = `
-                        <div class="flex-grow pr-2">
-                            <h4 class="text-sm font-bold text-gray-900 truncate">${record.quizName}</h4>
-                            <p class="text-xs text-gray-500 font-medium"><i class="fa-regular fa-calendar mr-1"></i>${record.date}</p>
+                        <div class="pr-2 truncate">
+                            <h5 class="text-xs font-bold text-gray-900 truncate">${rec.quizTitle}</h5>
+                            <span class="text-[10px] text-gray-400 font-medium"><i class="fa-regular fa-calendar-alt mr-1"></i>${rec.date}</span>
                         </div>
-                        <div class="flex-shrink-0 text-right">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold border ${colorClass} shadow-inner">${record.score}/${record.total} (${pct}%)</span>
-                        </div>
+                        <span class="text-xs font-black px-2.5 py-1 rounded-lg border ${badgeClass} shadow-2xs whitespace-nowrap">${rec.score}/${rec.total} (${pct}%)</span>
                     `;
                     perfList.appendChild(item);
                 });
             }
         }
 
-        // --- MODULE DETAILS LOGIC ---
-
-        function openModule(moduleId) {
+        // --- MODULE DETAILS & LEADERBOARD RENDERER ---
+        window.openModule = async function(moduleId) {
             currentModuleId = moduleId;
             const mod = modulesData.find(m => m.id === moduleId);
-            
+
             document.getElementById('modDetailTitle').innerText = mod.name;
             document.getElementById('modDetailNumber').innerText = `Module ${mod.id}`;
-            
+
             const iconContainer = document.getElementById('modDetailIcon');
             iconContainer.innerHTML = `<i class="fa-solid ${mod.icon}"></i>`;
 
             const quizList = document.getElementById('quizListContainer');
-            quizList.innerHTML = '';
+            quizList.innerHTML = '<div class="text-center py-6 text-gray-400 font-semibold text-xs"><i class="fa-solid fa-spinner animate-spin text-lg mr-2"></i> Loading quizzes & global leaderboard...</div>';
 
-            // If it's Developmental Biology (Module 5), show Quiz 1. Otherwise show "Coming soon"
+            showView('viewModuleDetails');
+
             if (moduleId === 5) {
+                const quizTitle = 'Quiz 1: Early Embryonic Commitment & Specification';
                 const qCount = devBioQuestions.length;
                 const totalMins = qCount * 3;
-                const quizTitle = 'Quiz 1: Early Embryonic Commitment & Specification';
-                
-                // Fetch top performers for the leaderboard
-                const topScorers = getTopScorers(quizTitle, 3); // Get top 3
-                let leaderboardHTML = '';
-                
-                if (topScorers.length > 0) {
-                    leaderboardHTML = `
-                        <div class="mt-5 border-t border-gray-100 pt-4">
-                            <h5 class="text-sm font-extrabold text-gray-800 mb-3 flex items-center">
-                                <i class="fa-solid fa-crown text-themeGold mr-2"></i> Top Performers
-                            </h5>
+
+                // Load Leaderboard from Cloud/Local
+                const leaderData = await getGlobalLeaderboard(quizTitle);
+
+                let leaderHTML = '';
+                if (leaderData && leaderData.length > 0) {
+                    leaderHTML = `
+                        <div class="mt-6 pt-5 border-t border-gray-100">
+                            <div class="flex items-center justify-between mb-3">
+                                <h5 class="text-xs font-black text-gray-800 uppercase tracking-wider flex items-center">
+                                    <i class="fa-solid fa-trophy text-themeGold mr-1.5 text-sm"></i> Global Leaderboard (Top Candidates)
+                                </h5>
+                                <span class="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100"><i class="fa-solid fa-globe mr-1"></i> Live</span>
+                            </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     `;
-                    
-                    topScorers.forEach((scorer, idx) => {
-                        let rankColors = "bg-gray-50 border-gray-200 text-gray-700";
-                        if (idx === 0) rankColors = "bg-yellow-50 border-yellow-300 text-yellow-800";
-                        else if (idx === 1) rankColors = "bg-gray-100 border-gray-300 text-gray-800";
-                        else if (idx === 2) rankColors = "bg-orange-50 border-orange-200 text-orange-800";
 
-                        leaderboardHTML += `
-                            <div class="flex justify-between items-center p-2.5 rounded-lg border ${rankColors} shadow-sm">
+                    leaderData.slice(0, 3).forEach((scorer, idx) => {
+                        let rankBadge = "bg-gray-100 text-gray-700 border-gray-200";
+                        let crownIcon = `<span class="font-black text-xs text-gray-400 w-5">#${idx+1}</span>`;
+                        if (idx === 0) {
+                            rankBadge = "bg-gradient-to-r from-amber-50 to-yellow-100 text-amber-900 border-yellow-300";
+                            crownIcon = `<i class="fa-solid fa-crown text-amber-500 text-xs w-5"></i>`;
+                        } else if (idx === 1) {
+                            rankBadge = "bg-gray-50 text-gray-800 border-gray-300";
+                            crownIcon = `<i class="fa-solid fa-medal text-gray-400 text-xs w-5"></i>`;
+                        } else if (idx === 2) {
+                            rankBadge = "bg-orange-50 text-orange-900 border-orange-200";
+                            crownIcon = `<i class="fa-solid fa-award text-amber-700 text-xs w-5"></i>`;
+                        }
+
+                        leaderHTML += `
+                            <div class="flex justify-between items-center p-3 rounded-xl border ${rankBadge} shadow-sm">
                                 <div class="flex items-center space-x-2 truncate pr-2">
-                                    <span class="font-black text-opacity-50 text-xs w-4">#${idx + 1}</span>
-                                    <span class="font-bold text-sm truncate" title="${scorer.username}">@${scorer.username}</span>
+                                    ${crownIcon}
+                                    <div class="truncate">
+                                        <p class="font-extrabold text-xs truncate">${scorer.fullName || scorer.username}</p>
+                                        <p class="text-[10px] opacity-70">@${scorer.username}</p>
+                                    </div>
                                 </div>
-                                <span class="font-bold text-xs bg-white px-2 py-1 rounded shadow-sm border border-opacity-50">${scorer.score}</span>
+                                <span class="font-black text-xs bg-white/90 px-2.5 py-1 rounded-lg border border-black/10 shadow-2xs">${scorer.score} pts</span>
                             </div>
                         `;
                     });
-                    
-                    leaderboardHTML += `</div></div>`;
+
+                    leaderHTML += `</div></div>`;
                 }
 
                 quizList.innerHTML = `
-                    <div class="flex flex-col p-5 md:p-6 border border-emerald-100 rounded-xl hover:border-themeGreen hover:shadow-md transition-all bg-white group">
+                    <div class="flex flex-col p-6 border border-emerald-100 rounded-2xl bg-white hover:border-themeGreen hover:shadow-md transition-all group">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                            <div class="text-left">
-                                <h4 class="font-bold text-gray-900 text-lg group-hover:text-themeGreen transition-colors">${quizTitle}</h4>
-                                <p class="text-sm text-gray-500 mt-1 font-medium flex items-center flex-wrap gap-2">
+                            <div>
+                                <span class="text-[10px] font-black text-themeGreen bg-emerald-50 px-2.5 py-1 rounded-full uppercase tracking-wider">CSIR Part B & C Level</span>
+                                <h4 class="font-black text-gray-900 text-lg mt-2 group-hover:text-themeGreen transition-colors">${quizTitle}</h4>
+                                <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 font-semibold mt-1">
                                     <span><i class="fa-solid fa-list-ol text-themeGreen mr-1"></i> ${qCount} Questions</span>
-                                    <span class="text-gray-300">|</span>
+                                    <span>•</span>
                                     <span><i class="fa-solid fa-stopwatch text-themeGold mr-1"></i> ${totalMins} Mins (3 mins/Q)</span>
-                                </p>
+                                </div>
                             </div>
-                            <button onclick="initQuiz('${quizTitle}')" class="premium-btn px-6 py-3 rounded-full font-bold text-sm shadow-md w-full sm:w-auto flex-shrink-0 uppercase tracking-wider">
+                            <button onclick="initQuiz('${quizTitle}')" class="premium-btn px-6 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider shadow-md flex-shrink-0 w-full sm:w-auto">
                                 Start Quiz
                             </button>
                         </div>
-                        ${leaderboardHTML}
+                        ${leaderHTML}
                     </div>
                 `;
             } else {
                 quizList.innerHTML = `
-                    <div class="p-8 text-center bg-gray-50 rounded-xl border border-dashed border-gray-300">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm text-gray-400 text-2xl">
-                            <i class="fa-solid fa-person-digging"></i>
+                    <div class="p-10 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm text-gray-400 text-xl">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
-                        <p class="text-gray-700 font-bold text-lg mb-1">Under Development</p>
-                        <p class="text-sm text-gray-500 font-medium">Premium content for this module is being curated. Check back soon.</p>
+                        <h4 class="text-sm font-bold text-gray-800 mb-1">Module Quiz Coming Soon</h4>
+                        <p class="text-xs text-gray-500">Practice questions for Unit ${mod.id} are being reviewed for accuracy.</p>
                     </div>
                 `;
             }
+        };
 
-            showView('viewModuleDetails');
-        }
-
-        // --- QUIZ LOGIC ---
-
-        function initQuiz(quizTitle) {
+        // --- QUIZ ENGINE ---
+        window.initQuiz = function(quizTitle) {
             userAnswers = {};
-            activeQuizData = devBioQuestions; // Using dev bio set for this example
+            activeQuizData = devBioQuestions;
             activeQuizInfo = { title: quizTitle, totalMarks: 80 };
-            
+
             document.getElementById('activeQuizTitle').innerText = quizTitle;
             const mod = modulesData.find(m => m.id === currentModuleId);
             document.getElementById('activeQuizSubtitle').innerText = `Module ${mod.id}: ${mod.name}`;
             document.getElementById('quizCandidateName').innerText = currentProfileName;
-            
+
             document.getElementById('topProgressBadge').classList.remove('hidden');
             document.getElementById('topProgressBadge').classList.add('flex');
             updateProgress();
-            
+
             renderQuizQuestions();
             startTimer();
             showView('viewQuiz');
-        }
+        };
 
         function startTimer() {
             if (timerInterval) clearInterval(timerInterval);
-            timeRemaining = activeQuizData.length * 3 * 60; // 3 minutes per question
+            timeRemaining = activeQuizData.length * 3 * 60; // 3 mins per question = 60 mins
             updateTimerDisplay();
-            
+
             timerInterval = setInterval(() => {
                 timeRemaining--;
                 updateTimerDisplay();
-                
+
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
                     closeSubmitModal();
                     closeMessageModal();
                     processSubmission();
-                    
-                    // Notify user that time ran out after showing results
                     setTimeout(() => {
-                         showCustomMessage("Time's Up!", "Your time ran out and the quiz was automatically submitted. Here are your results.", "info");
-                    }, 600);
+                        showCustomMessage("Time Elapsed", "Your timer expired. Answers have been automatically recorded.", "info");
+                    }, 500);
                 }
             }, 1000);
         }
@@ -1069,37 +1179,35 @@
             activeQuizData.forEach((q, idx) => {
                 const card = document.createElement('div');
                 card.id = `qCard_${q.id}`;
-                card.className = 'gf-card p-6 md:p-8 border-l-4 border-l-transparent transition-all duration-300 relative';
-                
+                card.className = 'gf-card p-6 border-l-4 border-l-transparent transition-all';
+
                 const formattedQText = q.question.replace(/\n/g, '<br>');
                 let optionsHTML = '';
-                
+
                 q.options.forEach(opt => {
                     optionsHTML += `
-                        <label class="flex items-start space-x-4 p-3.5 rounded-xl hover:bg-themeLight cursor-pointer border border-transparent hover:border-emerald-200 transition-colors group">
+                        <label class="flex items-start space-x-3.5 p-3.5 rounded-xl hover:bg-emerald-50/70 cursor-pointer border border-transparent hover:border-emerald-200 transition-all group">
                             <input type="radio" name="q_${q.id}" value="${opt.key}" 
                                 onchange="selectOption(${q.id}, '${opt.key}')"
-                                class="radio-custom mt-0.5 shadow-sm">
-                            <span class="text-sm md:text-base text-gray-700 leading-relaxed font-medium group-hover:text-themeDark">
-                                <strong class="font-extrabold text-gray-900">${opt.key}.</strong> ${opt.text}
+                                class="radio-custom mt-0.5">
+                            <span class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium group-hover:text-themeDark">
+                                <strong class="font-extrabold text-gray-900 mr-1">${opt.key}.</strong> ${opt.text}
                             </span>
                         </label>
                     `;
                 });
 
                 card.innerHTML = `
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-extrabold text-themeGreen uppercase tracking-widest bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100 shadow-sm">
-                            Q ${q.id} / ${activeQuizData.length}
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-black text-themeGreen uppercase tracking-widest bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                            Question ${q.id} of ${activeQuizData.length}
                         </span>
-                        <span class="text-xs font-bold text-gray-400 flex items-center">
-                            <i class="fa-solid fa-tags mr-1"></i> [+4, -1]
-                        </span>
+                        <span class="text-[10px] font-bold text-gray-400">CSIR Part C [+4, -1]</span>
                     </div>
-                    <div class="text-base md:text-lg font-semibold text-gray-900 mb-6 leading-relaxed">
+                    <div class="text-sm sm:text-base font-bold text-gray-900 mb-5 leading-relaxed">
                         ${formattedQText}
                     </div>
-                    <div class="space-y-2 bg-gray-50 p-2 rounded-2xl border border-gray-100">
+                    <div class="space-y-1.5 bg-gray-50/70 p-2 rounded-2xl border border-gray-100">
                         ${optionsHTML}
                     </div>
                 `;
@@ -1107,50 +1215,46 @@
             });
         }
 
-        function selectOption(qId, key) {
+        window.selectOption = function(qId, key) {
             userAnswers[qId] = key;
             const card = document.getElementById(`qCard_${qId}`);
             if (card) {
-                card.classList.add('gf-card-selected');
+                card.classList.add('bg-emerald-50/20');
                 card.classList.replace('border-l-transparent', 'border-l-themeGreen');
             }
             updateProgress();
-        }
+        };
 
         function updateProgress() {
             const count = Object.keys(userAnswers).length;
             document.getElementById('answeredCountBadge').innerText = `${count} / ${activeQuizData.length} Answered`;
         }
 
-        function requestAbortQuiz() {
+        window.requestAbortQuiz = function() {
             showCustomMessage(
-                "Exit Quiz?", 
-                "Are you sure you want to abandon this quiz? Any unsaved progress will be permanently lost.", 
+                "Exit Quiz Session?", 
+                "Are you sure you want to exit? Your answers for this active session will not be saved.", 
                 "danger", 
-                abortQuizConfirm
+                () => {
+                    if (timerInterval) clearInterval(timerInterval);
+                    document.getElementById('topProgressBadge').classList.add('hidden');
+                    openModule(currentModuleId);
+                }
             );
-        }
+        };
 
-        function abortQuizConfirm() {
-            if (timerInterval) clearInterval(timerInterval);
-            document.getElementById('topProgressBadge').classList.add('hidden');
-            openModule(currentModuleId);
-        }
-
-        // --- SUBMISSION & RESULTS ---
-
-        function confirmSubmission() {
+        window.confirmSubmission = function() {
             const count = Object.keys(userAnswers).length;
             document.getElementById('modalAnswered').innerText = count;
             document.getElementById('modalUnanswered').innerText = activeQuizData.length - count;
             document.getElementById('submitModal').classList.remove('hidden');
-        }
+        };
 
-        function closeSubmitModal() {
+        window.closeSubmitModal = function() {
             document.getElementById('submitModal').classList.add('hidden');
-        }
+        };
 
-        function processSubmission() {
+        window.processSubmission = async function() {
             closeSubmitModal();
             if (timerInterval) clearInterval(timerInterval);
 
@@ -1167,32 +1271,27 @@
                 const isCorrect = userChoice === q.answer;
                 const isAttempted = userChoice !== null;
 
-                let scoreDelta = 0;
                 let statusBadge = '';
                 let cardBorderClass = '';
 
                 if (!isAttempted) {
                     unattemptedCount++;
-                    scoreDelta = 0;
-                    statusBadge = `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-extrabold shadow-sm border border-gray-200">Skipped (0)</span>`;
+                    statusBadge = `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">Skipped (0 pts)</span>`;
                     cardBorderClass = 'border-l-4 border-l-gray-300';
                 } else if (isCorrect) {
                     correctCount++;
-                    scoreDelta = 4;
                     totalMarks += 4;
-                    statusBadge = `<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-extrabold shadow-sm border border-green-200"><i class="fa-solid fa-check mr-1"></i>+4 Points</span>`;
-                    cardBorderClass = 'border-l-4 border-l-green-500 bg-green-50/30';
+                    statusBadge = `<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-[10px] font-black uppercase"><i class="fa-solid fa-check mr-1"></i>+4 Points</span>`;
+                    cardBorderClass = 'border-l-4 border-l-green-500 bg-green-50/20';
                 } else {
                     incorrectCount++;
-                    scoreDelta = -1;
                     totalMarks -= 1;
-                    statusBadge = `<span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-extrabold shadow-sm border border-red-200"><i class="fa-solid fa-xmark mr-1"></i>-1 Point</span>`;
-                    cardBorderClass = 'border-l-4 border-l-red-500 bg-red-50/30';
+                    statusBadge = `<span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-[10px] font-black uppercase"><i class="fa-solid fa-xmark mr-1"></i>-1 Point</span>`;
+                    cardBorderClass = 'border-l-4 border-l-red-500 bg-red-50/20';
                 }
 
-                // Render explanation card
                 const item = document.createElement('div');
-                item.className = `gf-card p-6 md:p-8 ${cardBorderClass}`;
+                item.className = `gf-card p-6 ${cardBorderClass}`;
                 const formattedQText = q.question.replace(/\n/g, '<br>');
 
                 let optionsReviewHTML = '';
@@ -1202,20 +1301,20 @@
                     let textStyle = 'text-gray-700';
 
                     if (opt.key === q.answer) {
-                        optBg = 'bg-green-100 border-green-300 ring-2 ring-green-200';
+                        optBg = 'bg-green-100 border-green-300 ring-1 ring-green-400';
                         textStyle = 'font-bold text-green-900';
-                        optBadge = `<span class="ml-auto text-xs text-white font-bold px-2.5 py-1 rounded-full bg-green-600 shadow-sm"><i class="fa-solid fa-check-circle mr-1"></i>Correct</span>`;
+                        optBadge = `<span class="ml-auto text-[10px] text-white font-extrabold px-2.5 py-0.5 rounded-full bg-green-600"><i class="fa-solid fa-check-circle mr-1"></i>Correct Answer</span>`;
                     } else if (userChoice === opt.key && userChoice !== q.answer) {
                         optBg = 'bg-red-50 border-red-200';
                         textStyle = 'font-medium text-red-900 line-through opacity-80';
-                        optBadge = `<span class="ml-auto text-xs text-red-700 font-bold px-2.5 py-1 rounded-full bg-red-100 border border-red-200"><i class="fa-solid fa-xmark-circle mr-1"></i>Your Answer</span>`;
+                        optBadge = `<span class="ml-auto text-[10px] text-red-700 font-extrabold px-2.5 py-0.5 rounded-full bg-red-100 border border-red-200"><i class="fa-solid fa-xmark-circle mr-1"></i>Your Selection</span>`;
                     }
 
                     optionsReviewHTML += `
-                        <div class="flex items-center justify-between p-3.5 rounded-xl border ${optBg} mb-2 transition-all">
-                            <div class="flex items-start space-x-3">
-                                <span class="font-extrabold ${textStyle.includes('green') ? 'text-green-800' : 'text-gray-800'}">${opt.key}.</span>
-                                <span class="${textStyle} text-sm md:text-base">${opt.text}</span>
+                        <div class="flex items-center justify-between p-3 rounded-xl border ${optBg} mb-2 text-xs sm:text-sm">
+                            <div class="flex items-start space-x-2.5">
+                                <span class="font-black ${textStyle.includes('green') ? 'text-green-800' : 'text-gray-800'}">${opt.key}.</span>
+                                <span class="${textStyle}">${opt.text}</span>
                             </div>
                             ${optBadge}
                         </div>
@@ -1223,33 +1322,32 @@
                 });
 
                 item.innerHTML = `
-                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
-                        <span class="text-xs font-extrabold text-themeGreen uppercase tracking-widest">Question ${q.id}</span>
+                    <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2.5">
+                        <span class="text-[10px] font-black text-themeGreen uppercase tracking-widest">Question ${q.id}</span>
                         ${statusBadge}
                     </div>
-                    <div class="text-base md:text-lg font-semibold text-gray-900 mb-5 leading-relaxed">${formattedQText}</div>
-                    <div class="mb-5">
+                    <div class="text-sm sm:text-base font-bold text-gray-900 mb-4 leading-relaxed">${formattedQText}</div>
+                    <div class="mb-4">
                         ${optionsReviewHTML}
                     </div>
-                    <div class="bg-themeLight p-5 rounded-xl border border-emerald-100 text-sm text-themeDark">
-                        <strong class="font-extrabold text-themeGreen flex items-center mb-2 uppercase tracking-wide text-xs">
-                            <i class="fa-solid fa-lightbulb text-themeGold mr-2 text-base"></i> Concept Explanation
+                    <div class="bg-emerald-50/70 p-4 rounded-xl border border-emerald-100 text-xs text-themeDark leading-relaxed">
+                        <strong class="font-black text-themeGreen uppercase tracking-wider text-[10px] flex items-center mb-1">
+                            <i class="fa-solid fa-lightbulb text-themeGold mr-1.5 text-sm"></i> Explanation
                         </strong>
-                        <p class="leading-relaxed font-medium">${q.explanation}</p>
+                        <p class="font-medium text-gray-700">${q.explanation}</p>
                     </div>
                 `;
                 resultsExplContainer.appendChild(item);
             });
 
-            // Save performance to LocalStorage (Personal History & Global Leaderboard)
-            saveScoreToStorage(activeQuizInfo.title, totalMarks, activeQuizInfo.totalMarks);
-            saveGlobalScore(activeQuizInfo.title, currentUser, currentProfileName, totalMarks, activeQuizInfo.totalMarks);
+            // Persist user score to Firestore & Local storage
+            await saveScoreRecord(activeQuizInfo.title, totalMarks, activeQuizInfo.totalMarks);
 
-            // Populate Results Screen Header
+            // Populate Results UI
             document.getElementById('resultUserName').innerText = currentProfileName;
             document.getElementById('resultQuizName').innerText = activeQuizInfo.title;
             document.getElementById('statScore').innerText = `${totalMarks}/${activeQuizInfo.totalMarks}`;
-            
+
             const percentage = Math.max(0, ((totalMarks / activeQuizInfo.totalMarks) * 100)).toFixed(1);
             document.getElementById('statPercent').innerText = `${percentage}% Accuracy`;
             document.getElementById('statCorrect').innerText = correctCount;
@@ -1258,93 +1356,153 @@
 
             document.getElementById('topProgressBadge').classList.add('hidden');
             showView('viewResults');
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
 
-        // --- LOCAL STORAGE HANDLING (SCORES) ---
-
-        function getScoreStorageKey() {
-            return `csir_net_scores_${currentUser}`;
-        }
-
-        function saveScoreToStorage(quizName, score, total) {
-            const history = getScoresFromStorage();
+        // --- FIRESTORE & LOCAL PERSISTENCE LAYER ---
+        async function saveScoreRecord(quizTitle, score, total) {
             const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-            
-            history.push({
-                quizName: quizName,
+            const scoreObj = {
+                quizTitle: quizTitle,
+                username: currentUser,
+                fullName: currentProfileName,
                 score: score,
                 total: total,
-                date: dateStr
-            });
-            
-            localStorage.setItem(getScoreStorageKey(), JSON.stringify(history));
-        }
+                date: dateStr,
+                timestamp: Date.now()
+            };
 
-        function getScoresFromStorage() {
-            if (!currentUser) return [];
-            const data = localStorage.getItem(getScoreStorageKey());
-            return data ? JSON.parse(data) : [];
-        }
+            // 1. Save to User's Cloud History (Rule 1: /artifacts/{appId}/users/{userId}/{collectionName})
+            if (firebaseAuthReady && db) {
+                try {
+                    const userScoresCol = collection(db, 'artifacts', appId, 'users', currentUser, 'quizScores');
+                    const newScoreDoc = doc(userScoresCol);
+                    await setDoc(newScoreDoc, scoreObj);
 
-        // --- GLOBAL LEADERBOARD HANDLING ---
+                    // 2. Save to Global Leaderboard (Rule 1: /artifacts/{appId}/public/data/{collectionName})
+                    const leaderboardCol = collection(db, 'artifacts', appId, 'public', 'data', 'globalLeaderboard');
+                    const leaderDocRef = doc(leaderboardCol, `${currentUser}_${quizTitle.replace(/\s+/g, '_')}`);
+                    await setDoc(leaderDocRef, scoreObj);
+                } catch(e) {
+                    console.warn("Firestore save score fallback:", e);
+                }
+            }
 
-        function getGlobalScores() {
-            const data = localStorage.getItem('csir_global_leaderboard');
-            return data ? JSON.parse(data) : {};
-        }
+            // Always store in localStorage fallback
+            const localUserScoresKey = `csir_scores_${currentUser}`;
+            const localScores = JSON.parse(localStorage.getItem(localUserScoresKey) || "[]");
+            localScores.push(scoreObj);
+            localStorage.setItem(localUserScoresKey, JSON.stringify(localScores));
 
-        function saveGlobalScore(quizName, username, profileName, score, total) {
-            let globalDB = getGlobalScores();
-            if (!globalDB[quizName]) globalDB[quizName] = [];
+            // Update local leaderboard backup
+            const globalLB = JSON.parse(localStorage.getItem('csir_global_leaderboard') || "{}");
+            if (!globalLB[quizTitle]) globalLB[quizTitle] = [];
             
-            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-            
-            // Check if user already took this quiz, if so update their best score
-            const existingEntryIndex = globalDB[quizName].findIndex(entry => entry.username === username);
-            
-            if (existingEntryIndex >= 0) {
-                // Only update if the new score is higher
-                if (score > globalDB[quizName][existingEntryIndex].score) {
-                    globalDB[quizName][existingEntryIndex].score = score;
-                    globalDB[quizName][existingEntryIndex].date = dateStr;
+            const existingIdx = globalLB[quizTitle].findIndex(item => item.username === currentUser);
+            if (existingIdx >= 0) {
+                if (score > globalLB[quizTitle][existingIdx].score) {
+                    globalLB[quizTitle][existingIdx] = scoreObj;
                 }
             } else {
-                // Add new entry
-                globalDB[quizName].push({
-                    username: username,
-                    profileName: profileName,
-                    score: score,
-                    total: total,
-                    date: dateStr
-                });
+                globalLB[quizTitle].push(scoreObj);
             }
-            
-            // Sort highest score first
-            globalDB[quizName].sort((a, b) => b.score - a.score);
-            localStorage.setItem('csir_global_leaderboard', JSON.stringify(globalDB));
+            localStorage.setItem('csir_global_leaderboard', JSON.stringify(globalLB));
         }
 
-        function getTopScorers(quizName, limit = 3) {
-            const globalDB = getGlobalScores();
-            return (globalDB[quizName] || []).slice(0, limit);
+        async function getUserScoreHistory(username) {
+            if (firebaseAuthReady && db) {
+                try {
+                    const userScoresCol = collection(db, 'artifacts', appId, 'users', username, 'quizScores');
+                    const snap = await getDocs(userScoresCol);
+                    if (!snap.empty) {
+                        const records = [];
+                        snap.forEach(d => records.push(d.data()));
+                        // Sort by timestamp in memory (Rule 2 adherence)
+                        records.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+                        return records;
+                    }
+                } catch(e) {
+                    console.warn("Firestore history fetch fallback:", e);
+                }
+            }
+            const local = localStorage.getItem(`csir_scores_${username}`);
+            return local ? JSON.parse(local) : [];
         }
 
-        // Initialize display and check for remembered login session
-        const savedUser = localStorage.getItem('csir_active_user');
-        if (savedUser) {
-            const usersDB = getAuthDB();
-            if (usersDB[savedUser]) {
-                let userData = usersDB[savedUser];
-                if (typeof userData === 'string') userData = { password: userData, fullName: savedUser };
-                processLoginSuccess(savedUser, userData.fullName);
+        async function getGlobalLeaderboard(quizTitle) {
+            if (firebaseAuthReady && db) {
+                try {
+                    const leaderboardCol = collection(db, 'artifacts', appId, 'public', 'data', 'globalLeaderboard');
+                    const snap = await getDocs(leaderboardCol);
+                    if (!snap.empty) {
+                        const items = [];
+                        snap.forEach(d => {
+                            const data = d.data();
+                            if (data.quizTitle === quizTitle) {
+                                items.push(data);
+                            }
+                        });
+                        // Memory sort highest score first (Rule 2 adherence)
+                        items.sort((a, b) => b.score - a.score);
+                        return items;
+                    }
+                } catch(e) {
+                    console.warn("Firestore leaderboard fetch fallback:", e);
+                }
+            }
+
+            const localLB = JSON.parse(localStorage.getItem('csir_global_leaderboard') || "{}");
+            const items = localLB[quizTitle] || [];
+            items.sort((a, b) => b.score - a.score);
+            return items;
+        }
+
+        // --- MODAL UTILITIES ---
+        window.showCustomMessage = function(title, text, type = 'info', onConfirm = null) {
+            document.getElementById('msgTitle').innerText = title;
+            document.getElementById('msgText').innerText = text;
+
+            const iconContainer = document.getElementById('msgIconContainer');
+            const icon = document.getElementById('msgIcon');
+
+            if (type === 'danger') {
+                iconContainer.className = "w-14 h-14 mx-auto rounded-full bg-red-100 flex items-center justify-center mb-3";
+                icon.className = "fa-solid fa-triangle-exclamation text-xl text-red-600";
+            } else {
+                iconContainer.className = "w-14 h-14 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-3";
+                icon.className = "fa-solid fa-circle-info text-xl text-themeGreen";
+            }
+
+            if (onConfirm) {
+                document.getElementById('msgActionsSingle').classList.add('hidden');
+                document.getElementById('msgActionsConfirm').classList.remove('hidden');
+                document.getElementById('msgConfirmBtn').onclick = () => {
+                    closeMessageModal();
+                    onConfirm();
+                };
+            } else {
+                document.getElementById('msgActionsSingle').classList.remove('hidden');
+                document.getElementById('msgActionsConfirm').classList.add('hidden');
+            }
+
+            document.getElementById('messageModal').classList.remove('hidden');
+        };
+
+        window.closeMessageModal = function() {
+            document.getElementById('messageModal').classList.add('hidden');
+        };
+
+        // --- AUTO SESSION RESTORATION ---
+        window.addEventListener('load', () => {
+            const savedUser = localStorage.getItem('csir_active_user');
+            const savedFullName = localStorage.getItem('csir_active_fullname');
+
+            if (savedUser) {
+                processLoginSuccess(savedUser, savedFullName || savedUser);
             } else {
                 navigate('auth');
             }
-        } else {
-            navigate('auth');
-        }
-
+        });
     </script>
 </body>
 </html>
