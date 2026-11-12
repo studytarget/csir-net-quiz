@@ -810,6 +810,10 @@
         function processLoginSuccess(username, fullName) {
             currentUser = username;
             currentProfileName = fullName || username;
+            
+            // Remember the user session so they don't get logged out on refresh
+            localStorage.setItem('csir_active_user', username);
+            
             document.getElementById('navUsername').innerText = currentProfileName.split(' ')[0]; // Show first name in nav
             document.getElementById('dashWelcomeName').innerText = currentProfileName;
             navigate('dashboard');
@@ -818,6 +822,7 @@
         function logout() {
             currentUser = null;
             currentProfileName = null;
+            localStorage.removeItem('csir_active_user'); // Clear session
             navigate('auth');
         }
 
@@ -935,15 +940,57 @@
             if (moduleId === 5) {
                 const qCount = devBioQuestions.length;
                 const totalMins = qCount * 3;
+                const quizTitle = 'Quiz 1: Early Embryonic Commitment & Specification';
+                
+                // Fetch top performers for the leaderboard
+                const topScorers = getTopScorers(quizTitle, 3); // Get top 3
+                let leaderboardHTML = '';
+                
+                if (topScorers.length > 0) {
+                    leaderboardHTML = `
+                        <div class="mt-5 border-t border-gray-100 pt-4">
+                            <h5 class="text-sm font-extrabold text-gray-800 mb-3 flex items-center">
+                                <i class="fa-solid fa-crown text-themeGold mr-2"></i> Top Performers
+                            </h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    `;
+                    
+                    topScorers.forEach((scorer, idx) => {
+                        let rankColors = "bg-gray-50 border-gray-200 text-gray-700";
+                        if (idx === 0) rankColors = "bg-yellow-50 border-yellow-300 text-yellow-800";
+                        else if (idx === 1) rankColors = "bg-gray-100 border-gray-300 text-gray-800";
+                        else if (idx === 2) rankColors = "bg-orange-50 border-orange-200 text-orange-800";
+
+                        leaderboardHTML += `
+                            <div class="flex justify-between items-center p-2.5 rounded-lg border ${rankColors} shadow-sm">
+                                <div class="flex items-center space-x-2 truncate pr-2">
+                                    <span class="font-black text-opacity-50 text-xs w-4">#${idx + 1}</span>
+                                    <span class="font-bold text-sm truncate" title="${scorer.username}">@${scorer.username}</span>
+                                </div>
+                                <span class="font-bold text-xs bg-white px-2 py-1 rounded shadow-sm border border-opacity-50">${scorer.score}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    leaderboardHTML += `</div></div>`;
+                }
+
                 quizList.innerHTML = `
-                    <div class="flex flex-col sm:flex-row justify-between items-center p-5 border border-emerald-100 rounded-xl hover:border-themeGreen hover:shadow-md transition-all bg-white group">
-                        <div class="mb-4 sm:mb-0 text-center sm:text-left">
-                            <h4 class="font-bold text-gray-900 text-lg group-hover:text-themeGreen transition-colors">Quiz 1: Early Embryonic Commitment & Specification</h4>
-                            <p class="text-sm text-gray-500 mt-1 font-medium"><i class="fa-solid fa-list-ol mr-1"></i> ${qCount} Questions &nbsp;<span class="text-gray-300 mx-1">|</span>&nbsp; <i class="fa-solid fa-stopwatch mr-1"></i> ${totalMins} Mins (3 mins/Q)</p>
+                    <div class="flex flex-col p-5 md:p-6 border border-emerald-100 rounded-xl hover:border-themeGreen hover:shadow-md transition-all bg-white group">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div class="text-left">
+                                <h4 class="font-bold text-gray-900 text-lg group-hover:text-themeGreen transition-colors">${quizTitle}</h4>
+                                <p class="text-sm text-gray-500 mt-1 font-medium flex items-center flex-wrap gap-2">
+                                    <span><i class="fa-solid fa-list-ol text-themeGreen mr-1"></i> ${qCount} Questions</span>
+                                    <span class="text-gray-300">|</span>
+                                    <span><i class="fa-solid fa-stopwatch text-themeGold mr-1"></i> ${totalMins} Mins (3 mins/Q)</span>
+                                </p>
+                            </div>
+                            <button onclick="initQuiz('${quizTitle}')" class="premium-btn px-6 py-3 rounded-full font-bold text-sm shadow-md w-full sm:w-auto flex-shrink-0 uppercase tracking-wider">
+                                Start Quiz
+                            </button>
                         </div>
-                        <button onclick="initQuiz('Quiz 1: Early Embryonic Commitment & Specification')" class="premium-btn px-6 py-2.5 rounded-full font-bold text-sm shadow-md w-full sm:w-auto">
-                            Start Quiz Now
-                        </button>
+                        ${leaderboardHTML}
                     </div>
                 `;
             } else {
@@ -1194,8 +1241,9 @@
                 resultsExplContainer.appendChild(item);
             });
 
-            // Save performance to LocalStorage
+            // Save performance to LocalStorage (Personal History & Global Leaderboard)
             saveScoreToStorage(activeQuizInfo.title, totalMarks, activeQuizInfo.totalMarks);
+            saveGlobalScore(activeQuizInfo.title, currentUser, currentProfileName, totalMarks, activeQuizInfo.totalMarks);
 
             // Populate Results Screen Header
             document.getElementById('resultUserName').innerText = currentProfileName;
@@ -1239,8 +1287,63 @@
             return data ? JSON.parse(data) : [];
         }
 
-        // Initialize display
-        navigate('auth');
+        // --- GLOBAL LEADERBOARD HANDLING ---
+
+        function getGlobalScores() {
+            const data = localStorage.getItem('csir_global_leaderboard');
+            return data ? JSON.parse(data) : {};
+        }
+
+        function saveGlobalScore(quizName, username, profileName, score, total) {
+            let globalDB = getGlobalScores();
+            if (!globalDB[quizName]) globalDB[quizName] = [];
+            
+            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            
+            // Check if user already took this quiz, if so update their best score
+            const existingEntryIndex = globalDB[quizName].findIndex(entry => entry.username === username);
+            
+            if (existingEntryIndex >= 0) {
+                // Only update if the new score is higher
+                if (score > globalDB[quizName][existingEntryIndex].score) {
+                    globalDB[quizName][existingEntryIndex].score = score;
+                    globalDB[quizName][existingEntryIndex].date = dateStr;
+                }
+            } else {
+                // Add new entry
+                globalDB[quizName].push({
+                    username: username,
+                    profileName: profileName,
+                    score: score,
+                    total: total,
+                    date: dateStr
+                });
+            }
+            
+            // Sort highest score first
+            globalDB[quizName].sort((a, b) => b.score - a.score);
+            localStorage.setItem('csir_global_leaderboard', JSON.stringify(globalDB));
+        }
+
+        function getTopScorers(quizName, limit = 3) {
+            const globalDB = getGlobalScores();
+            return (globalDB[quizName] || []).slice(0, limit);
+        }
+
+        // Initialize display and check for remembered login session
+        const savedUser = localStorage.getItem('csir_active_user');
+        if (savedUser) {
+            const usersDB = getAuthDB();
+            if (usersDB[savedUser]) {
+                let userData = usersDB[savedUser];
+                if (typeof userData === 'string') userData = { password: userData, fullName: savedUser };
+                processLoginSuccess(savedUser, userData.fullName);
+            } else {
+                navigate('auth');
+            }
+        } else {
+            navigate('auth');
+        }
 
     </script>
 </body>
