@@ -13,7 +13,7 @@
  *
  * To force every device to drop its old cache after a big change, bump CACHE_VERSION.
  */
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_PREFIX = 'csir-quiz-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
