@@ -6168,16 +6168,28 @@
             }
 
             const formattedQText = questionBodyHTML(q);
+            const isPaperQ = !!quiz && quiz.kind === 'pyq';
+            const goodKeys = isPaperQ ? acceptedKeys(q) : [q.answer];
+            let keyNoteHTML = '';
+            if (isPaperQ && q.dropped) {
+                keyNoteHTML = `<p class="mb-3 text-[11px] font-bold text-amber-900 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2"><i class="fa-solid fa-circle-info mr-1.5 text-themeGold"></i>NTA dropped this question from the final answer key, so any attempt earns full marks.</p>`;
+            } else if (isPaperQ && goodKeys.length > 1) {
+                keyNoteHTML = `<p class="mb-3 text-[11px] font-bold text-emerald-900 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2"><i class="fa-solid fa-circle-info mr-1.5 text-themeGreen"></i>NTA's final answer key accepts option ${goodKeys.map(escapeHTML).join(' or ')}; either one earns the marks.</p>`;
+            }
             let optionsReviewHTML = '';
             q.options.forEach(opt => {
                 let optBg = 'bg-white border-gray-100';
                 let optBadge = '';
                 let textStyle = 'text-gray-700';
 
-                if (opt.key === q.answer) {
+                if (goodKeys.includes(opt.key)) {
                     optBg = 'bg-green-100 border-green-300 ring-1 ring-green-400';
                     textStyle = 'font-bold text-green-900';
-                    optBadge = `<span class="self-start sm:self-center sm:ml-auto flex-shrink-0 text-[10px] text-white font-extrabold px-2.5 py-0.5 rounded-full bg-green-600"><i class="fa-solid fa-check-circle mr-1"></i>Correct Answer</span>`;
+                    optBadge = `<span class="self-start sm:self-center sm:ml-auto flex-shrink-0 text-[10px] text-white font-extrabold px-2.5 py-0.5 rounded-full bg-green-600"><i class="fa-solid fa-check-circle mr-1"></i>${goodKeys.length > 1 ? 'Accepted Answer' : 'Correct Answer'}</span>`;
+                } else if (choice === opt.key && isPaperQ && q.dropped) {
+                    optBg = 'bg-amber-50 border-amber-200';
+                    textStyle = 'font-bold text-amber-900';
+                    optBadge = `<span class="self-start sm:self-center sm:ml-auto flex-shrink-0 text-[10px] text-amber-800 font-extrabold px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-200"><i class="fa-solid fa-check-circle mr-1"></i>Your Selection</span>`;
                 } else if (choice === opt.key) {
                     optBg = 'bg-red-50 border-red-200';
                     textStyle = 'font-medium text-red-900 line-through opacity-80';
@@ -6206,6 +6218,7 @@
                     ${statusBadge}
                 </div>
                 <div class="text-sm sm:text-base font-bold text-gray-900 mb-4 leading-relaxed break-words">${formattedQText}</div>
+                ${keyNoteHTML}
                 <div class="mb-4">
                     ${optionsReviewHTML}
                 </div>
@@ -6329,6 +6342,7 @@
             pyqEl('statIncorrectNote').innerText = markNote(quiz, 'neg', '-');
             pyqEl('resultsReviewHeading').innerText = isPyq ? 'Question-by-question review' : 'Detailed Solutions & Concept Explanations';
             pyqEl('resultsPyqNote').classList.toggle('hidden', !isPyq);
+            if (isPyq && quiz.keyNote) pyqEl('resultsPyqNote').innerText = quiz.keyNote;
             pyqEl('retakeBtnLabel').innerText = isPyq ? 'Retake this paper' : 'Retake this quiz';
             pyqEl('moduleBtnLabel').innerText = isPyq ? 'Back to Previous Year Papers' : 'More quizzes in this module';
             renderResultsBreakdown(quiz, result);
@@ -7167,6 +7181,7 @@
         // Anything a candidate reads goes through fmtMk(). The paper's questions live in their own file (pyq-*.js)
         // and are fetched the first time a candidate opens the paper.
         // `title` is the stable key behind score history and the leaderboard: do not rename it once people have taken the paper.
+        // Papers are listed newest first; add a new paper at the top. `keyNote` tells the candidate which answer key scores it.
         const pyqRegistry = [
             {
                 id: 'pyq-dec2025', kind: 'pyq', scale: 2,
@@ -7181,10 +7196,36 @@
                     { key: 'B', name: 'Part B', label: 'Life sciences (core)', count: 50, attempt: 35, pos: 4, neg: 1 },
                     { key: 'C', name: 'Part C', label: 'Analytical / application', count: 75, attempt: 25, pos: 8, neg: 2 }
                 ],
+                keyNote: "Scored against a published answer key for this paper, which may differ from NTA's final key on a few questions. No written explanations are included for this paper.",
+                questions: [],
+                references: []
+            },
+            {
+                id: 'pyq-jun2025', kind: 'pyq', scale: 2,
+                title: 'CSIR NET Life Sciences · June 2025',
+                badge: 'Previous Year Paper · Jun 2025',
+                file: 'pyq-jun2025.js',
+                questionCount: 145,
+                durationSec: 3 * 3600,
+                totalMarks: 400,           // 200 marks, in half-marks
+                parts: [
+                    { key: 'A', name: 'Part A', label: 'General aptitude', count: 20, attempt: 15, pos: 4, neg: 1 },
+                    { key: 'B', name: 'Part B', label: 'Life sciences (core)', count: 50, attempt: 35, pos: 4, neg: 1 },
+                    { key: 'C', name: 'Part C', label: 'Analytical / application', count: 75, attempt: 25, pos: 8, neg: 2 }
+                ],
+                keyNote: "Scored against NTA's final answer key (exam of 28 July 2025, shift 1). Where NTA accepted two options, either one earns the marks; the one question NTA dropped earns full marks whenever it is attempted. No written explanations are included for this paper.",
                 questions: [],
                 references: []
             }
         ];
+
+        // Option keys that score on a paper question. NTA's final key sometimes accepts two options (`accept`);
+        // a question NTA dropped (`dropped`) has no key and earns full marks whenever it is attempted.
+        function acceptedKeys(q) {
+            if (q.dropped) return [];
+            return Array.isArray(q.accept) && q.accept.length ? q.accept.map(String) : [String(q.answer)];
+        }
+        function choiceScores(q, choice) { return !!q.dropped || acceptedKeys(q).includes(String(choice)); }
 
         const pyqEl = id => document.getElementById(id);
         function pyqById(id) { return pyqRegistry.find(p => p.id === id) || null; }
@@ -7292,7 +7333,7 @@
                     status = 'skipped'; skipped++; P.skipped++;
                 } else {
                     P.answered++;
-                    if (choice === q.answer) { status = 'correct'; pts = m.pos; correct++; P.correct++; }
+                    if (choiceScores(q, choice)) { status = 'correct'; pts = m.pos; correct++; P.correct++; }
                     else { status = 'wrong'; pts = -m.neg; incorrect++; P.incorrect++; }
                 }
                 P.score += pts;
@@ -7671,7 +7712,7 @@
                             <li>Your answers are saved on this device as you go. If the page closes you can resume from the dashboard until the time runs out.</li>
                             <li>You can move freely between parts and questions, and mark questions for review.</li>
                             <li>The marks, answers and time taken of your attempt are saved, and your best attempt goes on the leaderboard for this paper.</li>
-                            <li>Scoring uses a published answer key for this paper, which may differ from NTA's final key on a few questions. No written explanations are included.</li>
+                            <li>${escapeHTML(paper.keyNote || '')}</li>
                         </ul>
                     </div>
 
