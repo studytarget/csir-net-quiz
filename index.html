@@ -6042,7 +6042,7 @@
             return `
                 <div class="space-y-3 font-medium text-gray-700">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-wider text-green-700 mb-0.5">Why ${escapeHTML(q.answer)} is correct${ex.qualifier ? ` (${escapeHTML(ex.qualifier)})` : ''}</p>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-green-700 mb-0.5">Why ${/^\d+$/.test(String(q.answer)) ? `option ${escapeHTML(q.answer)}` : escapeHTML(q.answer)} is correct${ex.qualifier ? ` (${escapeHTML(ex.qualifier)})` : ''}</p>
                         <p>${ex.correct}</p>
                     </div>
                     ${wrongHTML}
@@ -7214,6 +7214,23 @@
                     { key: 'C', name: 'Part C', label: 'Analytical / application', count: 75, attempt: 25, pos: 8, neg: 2 }
                 ],
                 keyNote: "Scored against NTA's final answer key (exam of 28 July 2025, shift 1). Where NTA accepted two options, either one earns the marks; the one question NTA dropped earns full marks whenever it is attempted. No written explanations are included for this paper.",
+                questions: [],
+                references: []
+            },
+            {
+                id: 'pyq-dec2024', kind: 'pyq', scale: 2,
+                title: 'CSIR NET Life Sciences · December 2024',
+                badge: 'Previous Year Paper · Dec 2024',
+                file: 'pyq-dec2024.js',
+                questionCount: 145,
+                durationSec: 3 * 3600,
+                totalMarks: 400,           // 200 marks, in half-marks
+                parts: [
+                    { key: 'A', name: 'Part A', label: 'General aptitude', count: 20, attempt: 15, pos: 4, neg: 1 },
+                    { key: 'B', name: 'Part B', label: 'Life sciences (core)', count: 50, attempt: 35, pos: 4, neg: 1 },
+                    { key: 'C', name: 'Part C', label: 'Analytical / application', count: 75, attempt: 25, pos: 8, neg: 2 }
+                ],
+                keyNote: "Scored against NTA's final answer key (exam of 1 March 2025, shift 1). Where NTA accepted two options, either one earns the marks. Every question carries a written explanation of the keyed option and of the options that are wrong.",
                 questions: [],
                 references: []
             }
