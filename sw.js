@@ -13,14 +13,14 @@
  *
  * To force every device to drop its old cache after a big change, bump CACHE_VERSION.
  */
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v7';
 const CACHE_PREFIX = 'csir-quiz-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
 // Same-folder files to have ready right after install (relative to this file, so it works under /csir-net-quiz/)
 const PRECACHE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png',
                   './icon-maskable-512.png', './apple-touch-icon.png', './firebase-config.js', './pyq-dec2025.js', './pyq-jun2025.js',
-                  './pyq-dec2024.js'];
+                  './pyq-dec2024.js', './pyq-jun2024.js'];
 
 // Cross-origin hosts that may be cached (host -> allowed path prefix)
 const CDN_HOSTS = {
